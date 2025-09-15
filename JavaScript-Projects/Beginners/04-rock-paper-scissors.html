@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+  </head>
+  <body>
+    <p>Rock Paper Scissors</p>
+
+    <button
+      onclick="
+    // Math.random() generates a value and we'll use this value in the program. This value will not change once generated onclick, so is const till logic runs full/next click
+    //which is a rerun of the program from the beginning. Recall that we use a variable to hold values, so this would be the first variable we will use 
+    //we want to tie a move to a computer randomly and we can think of doing this in two ways-either generate a whole number 0, 1, 2 and associate a move directly or since we know 
+    //that Math.random() returns a number >=0 and < 1, we split this range into 3 and associate each section with a move. We will do this one first.
+    //btw 0 and 1/3 => rock, btw 1/3 and 2/3 => paper, btw 2/3 and 3/3 or 1 => scissors. Do not say 1 over 3 (for gamblers), say 1 of 3 or one-third (of whole)
+
+    //Any variable declared within any JS expression that creates a scope like if and function, are bound and accessible within that scope, Best practice is to declare a variable outside
+    //and use it within scope meaning it is accessible everywhere.
+
+    //  const randomNumber = randomNumber(3)
+
+      const randomNumber = Math.random();
+      let computerMove = ''
+      //see how we implemented logical operator that checks two or more boolean expression on either side of it. We will also have to get a value out of any true condition.
+      //Also notice how everything in programming must not be an output, some values we assign to a variable by association and consequence of some event. like how we assign 'rock', 'paper'
+      if (randomNumber >=0 && randomNumber < 1/3) {
+        // const computerMove = 'rock'  //bound by scope and to use in another scope, we also have to declare it in all the branches.
+        computerMove = 'rock'
+
+      } else if (randomNumber >= 1/3 && randomNumber < 2/3) {
+        // const computerMove ='paper'
+        computerMove = 'paper'
+
+      } else if (randomNumber >= 2/3 && randomNumber < 3/3) {
+        // const computerMove ='scissors'
+        computerMove = 'scissors'
+
+      }
+    
+      //Now we compare the moves to get a result. Notice that because due to if statement, the result variable will keep being re-assigned, we use let.
+      let result = '';
+
+      if (computerMove === 'rock') {
+        result = 'Tie.'
+      } else if (computerMove === 'paper') {
+        result = 'You lose.'
+      } else if (computerMove === 'scissors') {
+        result = 'You win.'
+      }
+    
+    //Now we display the result in a popup
+    alert(`You picked rock, computer picked ${computerMove}. ${result}`)
+    "
+    >
+      Rock
+    </button>
+
+    <button
+      onclick="
+    const randomNumber = Math.random();
+      let computerMove = ''
+      
+      if (randomNumber >=0 && randomNumber < 1/3) {
+        computerMove = 'rock'
+
+      } else if (randomNumber >= 1/3 && randomNumber < 2/3) {
+        computerMove = 'paper'
+
+      } else if (randomNumber >= 2/3 && randomNumber < 3/3) {
+        computerMove = 'scissors'
+
+      }
+    
+      let result = '';
+
+      if (computerMove === 'rock') {
+        result = 'You win.'
+      } else if (computerMove === 'paper') {
+        result = 'Tie.'
+      } else if (computerMove === 'scissors') {
+        result = 'You lose.'
+      }
+    
+    //Now we display the result in a popup
+    alert(`You picked paper, computer picked ${computerMove}. ${result}`)
+    "
+    >
+      Paper
+    </button>
+
+    <button
+      onclick="
+     const randomNumber = Math.random();
+      let computerMove = ''
+      
+      if (randomNumber >=0 && randomNumber < 1/3) {
+        computerMove = 'rock'
+
+      } else if (randomNumber >= 1/3 && randomNumber < 2/3) {
+        computerMove = 'paper'
+
+      } else if (randomNumber >= 2/3 && randomNumber < 3/3) {
+        computerMove = 'scissors'
+
+      }
+    
+      let result = '';
+
+      if (computerMove === 'rock') {
+        result = 'You lose.'
+      } else if (computerMove === 'paper') {
+        result = 'You win.'
+      } else if (computerMove === 'scissors') {
+        result = 'Tie.'
+      }
+    
+    //Now we display the result in a popup
+    alert(`You picked scissors, computer picked ${computerMove}. ${result}`)
+    
+    "
+    >
+      Scissors
+    </button>
+    <script>
+      /* To write this program (rock paper scissors), we need to think of the algorithm -the step by step process to achieve the end product
+        1. We have three buttons representing our move/input, named Rock Paper and Scissors and when we click any one, steps 2 to 4 happens
+        2. Computer will randomly select a move (We need to implement this)
+        3. We compare the moves to get the result
+        4. We display the result in a popup
+        
+        */
+      function randomNumber(range) {
+        return Math.floor(Math.random() * range);
+      }
+    </script>
+  </body>
+</html>

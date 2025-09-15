@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>DOM PROJECTS</title>
+	</head>
+
+	<body>
+		<!-- Algorith: When we click the button, 1. If the test is 'Subscribe' change to 'Subscribed' otherwise, change back to Subscribe-->
+		<p>YouTube Subscribe Button</p>
+		<button
+			id="subscribe"
+			onclick="
+       subscribe()
+	// console.log(event)//will only work onclick
+    ">
+			Subscribe
+		</button>
+
+		<!-- The next project is to create a simple Amazon Shipping Calculator. Let us imagine that orders under $40 will incur an additional $10 shipping cost while orders $40 and over will be free shipping, ie, cost same to be delivered. 
+	When we click the button: 
+	1. Get the text in the text box 
+	2. If amount < $40, add 10 
+	3. Display total on the page. 
+	4. Next We want to also make same logic work with the Enter button. 
+
+	Now, remember on a web page, we interact with the page in so many ways. We click a button, we hover, we submit, we select, we use our mouse in various ways like hover, mouse click, push enter key, pushing any key down, push specific key, point using a mouse etc, are known as events in web dev and have been recognized by JS (language of the web) and special attributes known as event listeners have been developed for HTML elements and we select them and write some logic around them. onclick, onmouseclick, onkeydown etc are some examples. And importantly, once we setup an event listener of any type, inside it, an event object with the symbol 'event' or 'e' for that event is automatically created with several attributes and methods we can use. This event object has attributes like element type on which the event happens, the type of event. We do not see its creation but it is there. We can console.log() it though and see those properties. JavaScript also has the ability to add an event listener to an element using the addEventListener(event, callback) that takes an event and a callback (what we want to execute when that event happens similar to the code we write for onclick etc. For addEventListeners, the event object is automatically passed to the callbackas the first callback argument, but developers usually explicitly write the event/pass it as the argument to the callback e.g element.addEventListener('click', (e)=> {console.log(argument[0])}). One more thing, onkeydown allows you to determine the key we want to focus on. 
+
+	As i displayed above for the button element, the event listener used determines some of the logic we can write around the listener. For instance, an onclick listener will not have any info about the key that was pressed but an onkeydown attribute will have it. So the Enter key is implemented with an onkeydown attibute and a logic can be written if a preferred key is pressed as we shall see. Basically we will learn how to make the page interactive using preferred keys of our keyboard.
+	-->
+		<p>Amazon Shipping Calculator</p>
+		<!-- inout does not have a closing tag, so cannot use innerText or innerHTML, uses value attribute -->
+		<input
+			class="js-cost-input"
+			placeholder="Cost of order"
+			onkeydown="
+		//notice that the name of each key we see is its value as a string as recognized backend and notice this event listener was on the input element and not the button. Separation of roles.
+		calculateTotalKeyDown(event)
+		//the event object is a like a value provided in the sub-global space of the listener so even though we can define our function in the script tag without passing the event parameter(as event cannot exist outside the listener), when we call the function, the event is accessed as a sub-global value in the listener BUT explicit is always better, as we have learnt so far about functions, we can pass as parameters real values, real variables and placeholders. Handy because sometimes, we already know the value we want to pass or the variable we want to pass, otherwise we use a placeholder
+		" />
+
+		<button
+			onclick="
+		calculateTotal()
+	">
+			Calculate
+		</button>
+		<p class="js-cost-display"></p>
+
+		<!-- ................................................................... -->
+
+		<!-- Things to note so far
+	 1. Never do math with strings. If necessary, manually convert a string number value to number
+	     e.g '24' - 2 = 22 but '24' + 2 = 242
+	 2. we had learnt about the document and we said it represents the web page, next is another object called the 'window' and it represents the browser. Because it represents the browser, everything in the window object is inside the browser, e.g the document is inside the browser therefore also inside the window object. e.g window.document is same document we know. What else is inside the browser? the console is inside the browser. We however do not add it because JS adds it for us. -->
+
+		<!-- .......................................................... -->
+		<button
+			class="heads"
+			onclick="
+			const head = document.querySelector('.heads');
+			let display = document.querySelector('.display-1');
+			display.innerHTML = 'You chose: Heads'
+
+	 ">
+			heads</button
+		><button
+			class="tails"
+			onclick="
+			const tail = document.querySelector('.tails');
+			display = document.querySelector('.display-1');
+			display.innerHTML = 'You chose: Tails'
+		">
+			tails
+		</button>
+		<p class="display-1"></p>
+		<!-- ..................................................................... -->
+		<br />
+		<p class="display-2"></p>
+		<input
+			type=""
+			class="take-name" />
+		<input
+			type="button"
+			value="Submit"
+			onclick="
+			const data = document.querySelector('.take-name');
+			const display2 = document.querySelector('.display-2');
+			display2.innerHTML = `Your name is ${data.value}`
+			data.value = ''
+
+		" />
+		<br />
+		<br />
+
+		<input
+			type="text"
+			class="js-input-2"
+			onkeyup="
+			const data1 = document.querySelector('.js-input-2')
+			const display3 = document.querySelector('.display-3')
+
+			display3.innerHTML = data1.value
+		" />
+		<p class="display-3"></p>
+
+		<!-- ........................................................................ -->
+		<script>
+
+			// function calculateTotalKeyDown() {
+			// 	if (event.key === 'Enter') {
+			// 		calculateTotal()
+			// 	}
+			// }
+			function calculateTotalKeyDown(event) {
+				if (event.key === 'Enter') {
+					calculateTotal()
+				}
+			}
+
+			function subscribe() {
+				const subButton = document.querySelector("#subscribe")
+				//the text on a button is the button's inner text. just like a p element.
+				if (subButton.innerText === 'Subscribe') {
+			        subButton.innerHTML = 'Subscribed';
+			    } else {
+			        subButton.innerHTML = 'Subscribe';
+			    }
+			}
+
+			function calculateTotal() {
+				//values got from an input element is a string, we need inbuilt functions to change.
+				const inputElement = document.querySelector('.js-cost-input');
+				const costDisplay = document.querySelector('.js-cost-display');
+				let cost = Number(inputElement.value);
+				if (cost < 40) {
+					cost += 10;
+					costDisplay.innerHTML = `$${cost.toFixed(2)}`;
+					inputElement.value = ''//this is the actual reference to the dom element, cost only used the value from dom to get a value but is not the dom element. I could as well have declared cost and used any value i deem fit for its initial value.
+
+				} else {
+					costDisplay.innerHTML = `$${cost}`;
+					inputElement.value = ''
+				}
+			}
+		</script>
+	</body>
+</html>

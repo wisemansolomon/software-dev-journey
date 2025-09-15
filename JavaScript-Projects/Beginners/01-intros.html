@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- In general, everything that we do not want to be visible on a page goes inside the head element e.g style
+     element. The script element is used to add js to a web page but it is usually (if not in a separate file) found at 
+     the body tag. It allows the page to load first before any Js interactivity is available. -->
+    <style>
+      button {
+        background-color: azure;
+        border: double;
+      }
+    </style>
+    <!-- The title element sets the text of the file as it would appear in search engines as well as tabs -->
+    <title>Rock Paper Scissors Game</title>
+  </head>
+  <body>
+    <!-- There are two places where we can run JS scripts in our webpage. In the script element and in the onclick attribute on an element 
+     the code in the script runs first when the page loads and the code in the onclick attribute runs only when we perform an like clicking a button
+     which triggers the onclick event-->
+    <button
+      title="The title attribute is used to add a tooltip"
+      ,
+      onclick="alert('I can write some JS logic here')"
+    >
+      Rock
+    </button>
+    <button onclick="console.log('added'); alert('purchased')">Paper</button>
+    <button>Scissors</button>
+
+    <script>
+      console.log("my name is solomon");
+      // The = sign is for assigning values to a variable. Variable re-assignment means re-assigning an already assigned variable a different value. let allows us to do that but const does not. So
+      // if we have a variable initially declared with const that over the course of writing the program will need to change its initial value, we can go back and change the declaration to let. Sometimes
+      //we may not know this from the onset, but as our code grows bigger
+    </script>
+  </body>
+</html>

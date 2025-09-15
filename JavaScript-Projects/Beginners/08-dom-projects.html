@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>DOM PROJECTS</title>
+		<style>
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			/* One important note to always remmember is that styles cascade. If an element has been applied two or more styles either by using class lists in the CSS, the more latest style superceeds the previously defined ones. They are there but hold no power. So even adding them again using a classList will not work. Only way is either remove the latest one that is stronger to revert to previous or use toggle which auto adds and removes the defined classList. But in any case, a removal must occur. Also note the word add, meaning it only applies the newly defined style and does not replace as the only style on the target element. So if there an element has other styles defined prior and they are not updated in the latest styling list, they still persist because they are not targetted. That is why all the font, margin, padding etc will remain even with a new style class added.*/
+			.css-subscribe {
+			background-color: black;
+			color: white;
+			padding: 10px 15px;
+			font-weight: bold;
+			border-radius: 50px;
+			cursor: pointer;
+			border: none;
+			margin-bottom: 30px;
+			}
+
+
+			/* could use is-subscribed but ..., also we made sure that the style is below the already applied above to give it more importance */
+			.dynamic-style {
+			background-color: rgb(240,240, 240);/*0 =>less color darker/255 => more color ligter*/
+			color: black;
+			}
+
+			.cost-input {
+				font-size: 15px;
+				padding: 10px; /*one value means all sides. two values means 1st value for vertical padding(top/bottom while 2nd value is for horizontal padding(lef/right)*/
+			}
+
+			.calculate-button {
+				background: green;
+				color: white;
+				border: none;
+				font-size: 15px;
+				padding: 12px 10px;
+				cursor: pointer;
+			}
+
+			.warning-display {
+				color: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- Algorith: When we click the button, 1. If the test is 'Subscribe' change to 'Subscribed' otherwise, change back to Subscribe
+		 
+		This next phase of the project is to style our page. Basically we are going to be combining HTML, JS and CSS together. Note that a good practice is to use different classes to select an element for CSS and JavaScript. Mind you, if we use an id, we will need to use the class eventually but if we use clss from the onset, we just keep adding more classes all within same parentheses
+		
+		Another thing of note and is very important when it comes to interactive styling is that if we recall, when we use the coument object to get an element into JS, that element becomes a JS object and has several attributes as we have already seen like innerText, innerHTML. There is also another of such attributes that works for CSS styling called classList which itself even though  an attribute is itself and object with methods like add(), remove() etc takes a stringname of the classwe want to add . look it up if needed. allows us to append a class dynamically on an element if an event occurs. Either use event attributes as we have been doing so far or add an event listener that that  is passed a callback with event object passed to it. Set it up by defining a class list of css styles and dynamically assign styles -->
+		<p>YouTube Subscribe Button</p>
+		<button
+			class="subscribe css-subscribe"
+			onclick="
+       subscribe()
+    ">
+			Subscribe
+		</button>
+
+		<p>Amazon Shipping Calculator</p>
+		<!-- input does not have a closing tag, so cannot use innerText or innerHTML, uses value attribute -->
+		<input
+			class="js-cost-input cost-input"
+			placeholder="Cost of order"
+			onkeydown="
+			calculateTotalKeyDown(event)
+		" />
+
+		<button
+			class="calculate-button"
+			onclick="
+			calculateTotal()
+	">
+			Calculate
+		</button>
+		<p class="js-cost-display"></p>
+
+		<!-- ................................................................... -->
+		<p>Heads or Tails button</p>
+		<button
+			class="heads"
+			onclick="
+			const head = document.querySelector('.heads');
+			let display = document.querySelector('.display-1');
+			display.innerHTML = 'You chose: Heads'
+
+	 ">
+			heads</button
+		><button
+			class="tails"
+			onclick="
+			const tail = document.querySelector('.tails');
+			display = document.querySelector('.display-1');
+			display.innerHTML = 'You chose: Tails'
+		">
+			tails
+		</button>
+		<p class="display-1"></p>
+		<!-- ..................................................................... -->
+		<br />
+		<p>DipslayNames</p>
+		<p class="display-2"></p>
+		<input
+			placeholder="Enter your name"
+			type=""
+			class="take-name" />
+		<input
+			type="button"
+			value="Submit"
+			onclick="
+			const data = document.querySelector('.take-name');
+			const display2 = document.querySelector('.display-2');
+			display2.innerHTML = `Your name is ${data.value}`
+			data.value = ''
+
+		" />
+		<br />
+		<br />
+
+		<input
+			type="text"
+			class="js-input-2"
+			onkeyup="
+			const data1 = document.querySelector('.js-input-2')
+			const display3 = document.querySelector('.display-3')
+
+			console.log(data1.value)
+			display3.innerHTML = data1.value //on keyup give the current value in the input box at the moment not the entry.
+		" />
+		<p class="display-3"></p>
+
+		<!-- ........................................................................ -->
+		<script>
+
+			// function calculateTotalKeyDown() {
+			// 	if (event.key === 'Enter') {
+			// 		calculateTotal()
+			// 	}
+			// }
+			function calculateTotalKeyDown(event) {
+				if (event.key === 'Enter') {
+					calculateTotal()
+				}
+			}
+
+			function subscribe() {
+				const subButton = document.querySelector(".subscribe");
+
+				if (subButton.innerText === 'Subscribe') {
+			        subButton.innerHTML = 'Subscribed';
+					subButton.classList.add('dynamic-style')
+			    } else {
+			        subButton.innerHTML = 'Subscribe';
+					subButton.classList.remove('dynamic-style')
+			    }
+			}
+
+			function calculateTotal() {
+				//values got from an input element is a string, we need inbuilt functions to change.
+				const inputElement = document.querySelector('.js-cost-input');
+				const costDisplay = document.querySelector('.js-cost-display');
+
+				let cost = Number(inputElement.value);
+				if (cost <= 0) {
+					costDisplay.classList.add('warning-display')
+					return costDisplay.innerHTML = 'warning: cost cannot be $0 or less'
+				}
+				costDisplay.classList.remove('warning-display')
+				if (cost < 40) {
+					cost += 10;
+					costDisplay.innerHTML = `$${cost.toFixed(2)}`;
+					inputElement.value = ''
+
+				} else {
+					costDisplay.innerHTML = `$${cost}`;
+					inputElement.value = ''
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Functions</title>
+</head>
+<body>
+    <!-- We will now see some advanced functions and use it to improve our eariier projects -->
+
+    <!-- Excercise 1 button -->
+
+    <button class="btn-1" onclick="
+        updateBtn();
+    ">Start</button>
+    <br>
+    <br>
+    <button class="btn-2" onclick="
+        updateCart();
+    ">Add to Cart</button>
+    <p class="js-msg"></p>
+
+    <br>
+    <br>
+    <button onclick="messages++">Add</button>
+    <button onclick="messages--">Remove</button>
+
+    <br><br>
+    <button class="js-event">Click Me</button>
+    <script>
+        
+
+        /*
+
+        //Ist thing we will learn in advanced functions is that functions are values. It is not same as other values we have seen that mainly store data but because it is used to store data manipulation code that may end up returning a value when called, they are also values that we can save in variables.
+
+        //1. naming the function with the parenthesis is what calls a function while the name alone is referencing a function. Calling a function means running the code inside a function. But referencing a function in any context makes that function available in that scope but is not run yet. This way of defining a function is called function declaration (statement). Less flexible though
+
+        function greeting() {
+           console.log('I am a declared function. I am hoisted and easier to read. I am scoped to the entire script or block')
+        };
+
+        //2. Function clean up: In javascript, as long as there's a way to access a function we do not need the function name. So we can as well delete the name and the function now becomes a type of an anonymous function. The variable name is not the function name. It just holds it. But be caareful, hoisting (calling the function before we declare it) doesn't work when we store a function in variables. This way of defining a function is termed function expression (expression). Arrow functions too const function1 = () => {};
+        
+        const function1 = function() {
+            console.log('I am a function used as a value. I am scoped to the variable so only the variable can access/call me')
+        };
+
+        function1()
+        console.log(function1)
+        console.log(typeof function1)  //typeof is used to check JS values. This means fun is a value
+
+
+        //So since we know functions are values. What can we further do with values. We can store them in an object. This gives us methods
+
+        const object1 = {num: 2, 
+            fun: function () {
+                console.log(this.num);
+        }}
+
+        object1.fun(); //notice no name bcos a way to access the function [object1.fun()] exists.
+
+
+
+        //What else can we do with a functions? We can pass values into functions
+
+        function call(param) {
+            param() //this implies that param must be a function 
+        }
+
+        call(function() {
+            console.log('hello new world')
+        }); //just passed the function itself as argument and it is called a callback
+
+        //Therefore a function passed into another function is called a callback function because it is expected that the receiving function will call that function at some point in the function execution.ie, the main function is called and it calls back the callback function.
+
+        //So in summary, anything we can do with a value, we can do with a function ie in addition to its main purpose of helping us re-use code.
+
+        */
+
+
+        /*
+
+        //let's see some practical real world examples: We will learn a feature of JS called setTimout(), it is a built-in function that takes two params-function & wait time (in milliseconds where 1000 mls = 1 sec) that allows us to run a function in the future. ie, within it we can call a function but set a delay period before function is executed.Now to pass a function we want as a value, we can create a function on the fly and not have to first write the function and pass it its name or variable holding it. Again, If another function is going to be calling a function, the function does not need to have a name. It should be anonymous.
+
+        setTimeout(function() {
+            console.log('This JS built-in function helps us delay the execution of a function')
+        }, 5000 );  //notice the delay period before the callback function was called to eecute.
+
+        //With this example of being able to delay/set a wait time, we will learn an important conept of programming called asynchrnous code/programmming. Look at this code below. Notice it is after the setTimout() function. Ideally programs run from top to bottom even other functions within functions.
+
+        console.log('this code runs before the code above it. Why is that?')
+
+        //So what happens is that an asynchronous code (setTimoeout() is an example) does not wait for the whole code in it to finish before going to the next line. setTimout() is asynchronous because it sets a timer, moves on to execute the lines of code after it and when the timer elapses, it calls back the function it was meant to execute. Synchronous code means the computer will wait for one line of code to finish before going to the next line. All codes we have written up until setTimeout() is synchronous. Also, all the code that is inside the callback function are also synchronous. The only aynchronous process is the setTimout() feature- that allows us do other things while waiting for the timeout to elapse. Imagine we had to wait for a block of code to finish if we know that that block must take some time before completion. Our program will be slow. But if that block is managed by a setTimout(), we can go on to other code blocks while we go back to the delayed process after a certain time has elapsed.
+
+        //Next we learn a similar function to setTimeout() called setInterval()
+        setInterval(function() {
+            console.log('This sets an interval to run a function repeatedly ie loops a code repeately')
+        },900000)
+
+        console.log('This line should run after setInterval() if it was synchrous')
+
+        //We will now use this idea of setInterval() to improve our rock paper scissor game by having an autoplay button
+
+        */
+
+
+        /*
+        //Next we learn another feature usage of function as values - We learn about another way to loop through an array. We already know and used a for-loop & while-loop, which are basic js syntax. Requires us to initialize a loop var i, a loop condition based on index of array (length of array), and updating the loop variable which helps stop the loop. This new way is a method of arrays called 'forEach()' method. It saves us the for-loop syntax. But it accepts a callback function that we pass two parameters that represents the value of an array and index of each value where as we iterate through the array, it takes the first value, pass it to the the callback function-value parameter does some logic with it and on and on. The index parameter is not mandatory to pass it, but to use the index in any logic, you must pass both. This will run that function for each entry in the array. Note: The forEach() is the preferred way to loop through an array, unless you are asked to use the basic js syntax method. And importantly it returns undefined meaning it does not return an array and can be used to modify the original array.
+
+        const array1 = [
+            'wash plates',
+            'make dinner',
+            'watch youtube'
+
+        ].forEach((value, index) => {
+            if (value === 'watch')
+            return
+            //console.log(value, index)
+        })
+        
+        //Note: Arrays are very important in software development that is why being able to access array indexes and values are always needed. In the basic js implementation of loops in which we loop through an array, we already see how we access an array's index and its values. But in developing the forEach() loop which was designed to run a function on each array item, we needed a way to have access to the array's value and index, and so it was designed that forEach() loop will run a callback function that takes two parameters, the value and index of the current iteration of the array.
+
+        //Note 2: To skip over the current iteration, the forEach loop uses return statement. This means because we run a function on the values, if we have to skip over a value, we run a return message on that value that meets the requirement.
+
+        //Note: 3 The forEach() has a limitation. If we need to exit the entire forEach loop early, there is no easy way so if we have that scenario, best we use the traditional way of writing for-loops.
+
+        //exercise 1: create a button named "Start", on clicking, after 1 second, change the button text to "Finished"
+
+        function updateBtn() {
+            const btn = document.querySelector('.btn-1');
+            btn.innerHTML = 'Loading...'
+            setTimeout(() => {
+                btn.innerHTML = 'Finished!'
+            }, 1000)
+        }
+
+        //if we click the btn, wait for 1.5s, then click it again for second time and several other times, notice that message disappears quickly. This is because we end up stacking a setTimeout tyhat clears the text at different times resulting in the muddled up text display/clearance. To resolve it, we clear previously running timeout
+        
+        let timeoutId;//declaring it outside the function ensures the last run timeoutId is not lost when the function is refreshed.
+        function updateCart() {
+            const msgElement = document.querySelector('.js-msg');
+            clearTimeout(timeoutId);
+            msgElement.innerHTML = "Added";
+            timeoutId = setTimeout(() => {
+                msgElement.innerHTML = "";
+            },2000);
+        } 
+
+        
+
+        // imagine we are creating a messaging app use setInterval() and document.titke to create a feature that we shall see (title changes every second). Initially, I just went straight to set document.title = "***" but i noticed it didnt change. Reason being that we used JS to change it and every second we change it to same thing so it appears fixed. To make it change we use an if condition to grab title and revert to its original title. Notice how we can grab directly without using a querySelector title and body. They are usually one on a page.
+        let messages = 2;
+
+        setInterval(() => {
+            if ((document.title === 'Advanced Functions') && (messages > 0)) {
+                document.title =`(${messages}) New Message`
+            } else {
+                document.title = 'Advanced Functions'
+            }
+            
+        }, 1000)
+
+
+        // more on advanced functions: Arrow functions. They work the same way as regular functions but arrow functions have a few shortcuts. 
+        
+        // 1. one param rule: If an arrow function takes only one parameter, we can omit the parentheses
+        // 2. One line rule: if the arrow function has a one line logic body, we can omit the curly brackets, the return statement and have the function all on one line. Below is the combination of both
+
+        const oneParam = param => 2 + 3;
+        console.log(oneParam())  //5  we able to auto return with one line.
+
+        // Another use of arrow functions is that they are used to define methods in objects in a more easier to read syntax. But the thing is that arrow functions are not recommeneded in objects beause they do not have a default 'this' variable to then associate it with the object.
+        
+        const object2 = {
+            method: () => {
+                //not encouraged. Rather use the shortcut for writing meethods for objects
+            },
+            method() {
+                //no explicit property name, and no function keyword required.
+            }
+        }
+        
+        // We shall learn about another difference btw regular function and arrow functions but that would be later as it is even more advanced concept---I think it is the concept of closure but we shall see.
+
+        // The next usage of functions as a value is in the use of event listeners. Already we have seen throughout our projects before now that if we want to make our page elements interactive like buttons, we use the onclick attribute of the button. Here's the catch, even though it works and all, we are kinda exposing our code to code to unauthorized parties. Every HTML element when grabbed into JS becomes an object like we already know. So every HTML element has a method called addeventlistener(). It allow us to add an event listener to the element and a logic to execute along if that event/interaction type is caught. No need to use onclick etc.
+
+        // So event listeners has advantages over using an attribute. 1. It allows us to add and remove multiple event listeners for an 'event' as we see fit ie being able to have two separate event handlers for one event (say 'click' and we want to do a, b, c as separete independent logic and not in same event listener). Note - the logic to run is the event listener (ie the function to be run) 2. We can remove an event listener - all without touching the html element.
+
+        //One more thing to make crystal clear is that when we say passing a function to a function, we are passing a reference to that function and it can only be function without the () or explcitly writing the function object which does not call itself but gets triggered by another object-here it is the button.
+        const eventListenerButton = document.querySelector('.js-event');
+
+        const eventListener2 = () => {
+            console.log('We can add multiple event listeners to one event');
+        };
+
+        eventListenerButton.addEventListener('click', () => {
+            console.log('function is the listener, click is the event');
+        });
+
+        eventListenerButton.addEventListener('click', eventListener2);
+
+        //To delete an event listener, we must pass the exact same eventlistener to the remove event listener. Now if we recall, functions are reference types, so no two referene type objects are the same. To correctly track one, we store it (its reference) in a variable and then pass around that variable as we wish. Notice how we did it for eventListener2. Same goes here. 
+
+        eventListenerButton.removeEventListener('click', () => {
+            //wont work cos it is a different reference object
+            console.log('We can add multiple event listeners to one event');
+        } );
+        
+        //this works bcos the event intital event listener was collected as variable before being passed around for anything we wanted to create
+        eventListenerButton.removeEventListener('click', eventListener2 );
+        
+
+        // Why are objectss not the same? Think of it like this, an object is a container of values but this container is initialized at different times. Because of the under-the-hood mechanism of initializing this container, no two container can ever be the same. That is why we can compare contents of objects and not the object itself.
+
+        // In general, it is recommended to store an event listener in variables and use, and in the event it needs to be removed, it is easy. 
+        // With all these in mind, we now go to our rock, paper, scissor game and improve it using add event listeners as it is best practise.
+
+        */
+        //--------------------------------------------------------------------------//
+        // We have learnt about the array method forEach(), now we shall learn about filter() and map()
+
+        // Filter(): Used to return an array that is a copy of an original array but without values that fail to meet certain criteria. Suppose we have an array of numbers and we want a copy of the array with all negative numbers removed. We could do this the manual way by looping and using if statement. But we can use an array method to easily do it. When we filter, we are trapping something that meet a criteria and letting others go. It works like for Each but difference is that the callback function we explicitly need to return a value (boolean) if we want that value that meets a condition to be part of the array returned by filter() and false if we do not want it/does not meet the criteria. Note: Some people can actualy write the code without writing the return statement for the callback. Although best practice dictates we be explicit.
+
+        console.log([1, -3, 5, -4].filter((value, index) => {
+            /*
+            if (value >= 0) {
+                return true
+            } else {
+                return false
+            }
+            */
+           //the above if stmt can be shortened for every value. It will first check boolean if true for-each and based on that add it to the array  filter will rtn
+           return value >= 0
+        }))
+
+
+
+        //.map() is used to return an array that is a copy of the original array but modified by some function. What we are doing here is we return a value from a callback function which is collected/passed to the map() function which returns an array waiting to be filled with values from the return value of callback.
+        console.log([1, 1, 3].map((value, index) => {
+            return value + 5 //
+        }))
+
+        console.log([1, 1, 3].map(value => value + 5 ))  //1 param & 1 line logic.
+
+        // The next advanced concept about functions we shall learn is 'Closure': A closure means that if a function has access to a value/var (not just a var defined within it but a val/var defined in an outer function), it will always have access to that value. 
+
+        /* To fully grasp this concept, a little about function's first principle.
+            UNDERSTANDING FUNCTIONS:
+        In programming, a function is a block of code that can be executed multiple times from different parts of my program. Functions typically have:
+            * Parameters: Values passed into functions
+            * Variables: Values defined within the function
+            * Return value: The value returned by a function.
+        
+            UNDERSTANDING SCOPE
+        A scope refers to the region of the code where a variable is defined and can be accessed. There are two main types of scope:
+            * Global scope: Variables defined outside any function, and are accessibe from anywhere in the code.
+            * Local scope: Variables defined within a function or within any curly bracket, only accessible within the function or within the curly braces.
+            
+           UNDERSTANDING NESTED FUNCTIONS
+        A nested function is a function defined within (not passed) another function. The inner function has access to:
+            * Its own local scope: Var defined within the inner function
+            * The outer function's local scope: var defined within the outer function.
+        
+           UNDERSTANDING CLOSURE
+        A closure is created whrn:
+            * A nested function is defined: inner function defined within an outer function
+            * The outer function returns the inner function rather than a value. This ensures that the outer function's scope is preserved
+            * The inner function is executed outside the outside function's scope- We see that it still has access to the outer function's local scope, even though the outer function has returned.
+            
+            
+        CHARACTERISTICS OF A CLOSRE-the inner func:
+            * Preserves the outer function's scope: The inner function has access to the variables and scope of the outer function, even after the outer function is returned.
+            * Can be executed multiple times: The inner function can be executed multiple times, and it still will have access to the outer functions's scope.
+            * Can capture and preserve variables from the outer function's scope. This is very key to closures.
+        
+        EXPLAIN WHY PRESERVING OUTER FUNCTION'S SCOPE IS KEY:
+        In programming, when a function is executed, it creates a local scope, which is a region of memory where the function's variables are stored. These variables are only accessible within the function. But when a function returns, its local scope/variables are discarded/destroyed, and the memory allocated for its variables is released/freed up, amd the function's scope is 'opened' again waiting for a new call - i mean, we do not expect all variables we declare in a function to keep taking up memory spaces permanently ofcourse.
+        
+        When a function is called, each time, it creates a new local scope, executes the function code, and destroys the local scope when it finishes executing but when we talk about closures, we are speaking to a way of preserving a functions scope/state in a way that in such a way that its scope can be used again and again. Sort of like maintaining a varible state that we can modify/update at will and to do this a function needs to return another function.
+
+            
+
+        */
+        // Another way to define 'Closure' is that a closure is a function that has access to its own scope, as well as the scope of its outer functions, even when the outer functions have returned (have been called/executed and no longer running.) 
+        
+        // So I think of a closure as being a function (closures only come up when discussing functions) that allows me to use values/variables in a scoped/private space which is sort of like having a key(the closure) to an encapsulated space where values/variables have been defined and not accessible in the global scope. Or think of it using this analogy. A closure(inner function) is a key that unlocks and accesses a privately scoped space. The outer function is like a secure room/private space where we can store and use values without exposing them to the global scope. It is mostly beneficial in two ways. 1) Encapsulation: Hide variables and functons from the global scope. 2) Controlled access: Only allow authorized access to the private space through closure.
+
+        //Real-World example: Suppose we are building a banking system, and we want to store a user's account balance securely, we can create a closure that: 1) Initializes the account balance within the closure's scope. 2) Returns a function that allows us to deposit or withdraw funds, while keeping the balance private.
+
+        function createAccount(initialBalance) {
+            let balance = initialBalance;
+            return function(acctAction, amount) {
+                if (acctAction === 'deposit') {
+                    balance += amount;
+                } else if (acctAction === "withdraw") {
+                    balance -= amount;
+                }
+                return balance
+            };
+        }
+
+        //we call outer function one time by passing its return value to a variable.
+
+        const myAccount = createAccount(5000);
+
+        //the return value is a function (ref to a function so we can use () to call it)
+        console.log(myAccount('deposit', 5000));
+        console.log(myAccount('deposit', 5000));
+        console.log(myAccount('deposit', 5000));
+        console.log(myAccount('deposit', 5000));//25000
+
+        //In summary, closures occur naturally in JS and we see them often in eventlisteners, callbacks, and modules
+
+        function countPositive(arr) {
+            let count = 0
+            arr.forEach((value, index) => {
+                if (value >= 0) {
+                    count++
+                }else {
+                    return;
+                }
+            })
+            return count
+        }
+
+        console.log(countPositive([-1,2,4,-4,-5,6, 8, 9]));
+
+        function removeEgg(foods) {
+            let eggToRemove = 0;
+            return foods.filter((value, index) => {
+                if (value === 'egg' && eggToRemove < 2) {
+                    count++
+                    //should we add it? No
+                    return false
+                } else {
+                    return true
+                }
+            })
+        }
+
+        console.log(removeEgg(['egg', 'rice', 'egg', 'beans', 'egg', 'yam']));
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>DOM</title>
+	</head>
+	<body>
+		<p></p>
+		<button>hello</button>
+		<script>
+			/*
+				In dom, we are quite a number of concepts to learn. Two of which are Nodes and NodesList.
+				The DOM concept brought about the concept of Nodes. It is a lingua used to represents all the items that can be in a HTML document from the POV of the DOM model.
+
+				Nodes: Always think of a node as representation of item or element within an HTML document. So any element when considered individually can be considered a node within the HTML document of that element type and when when accessed by JS using the dom. When we say item, it also means that any individual item other than an HTML element can also be considered a node of that type. 
+
+				Types of Nodes:
+				1) Element Node: Represents an HTML element such as <p> or <div>.
+				2) Text Node: Represents a text string that is within an HTML element.
+				3) Comment Node: This represents an HTML comment (<!--->).
+				4) Attribute Node: Represents an attribute of an HTML element such as href, src.
+				5) Document Node: This represents the entire HTML it is the <html> tag at the very top and bottom wrapping all other nodes within it. It is through it that we access all other nodes using the dot notation. When we do document.getelementById or document.querySelector() we are actually accessing specific nodes. When we collect nodes with a function that like querySelectorAll(), getElementsbyClassName(), childNodes, we create an array-like collection that is indexed and accessible using indexes as we access arrays.
+
+				NODE RELATIONSHIPS
+				1) Parent Node: The node that contains the current node (like one-up node)
+				2) Child Node: A node that is contained within the current node
+				3) Sibling Node: A node that shares same parent as the current node.
+
+				CHARACTERISTICS:
+				1) Nodes are organized in a tree-like struture with each node having a parent, child, and sibling relationship.
+				2)Unique Identifier: Each Node can be given a unique identifier, such as className or Id
+				3) Properties and Methods: Nodes have properties and methods that can be accessed and manipulated using JS.
+
+				WHAT ARE NODELISTS
+				A NodeList is a collection of nodes in a DOM - where we use document.xxx. It is an array-like object that contains a list of nodes, such as elements, attributes and text nodes. 
+
+				Characteristics:
+				1. Array-like: NodeList has a length property and indexing, just like an array.
+				2. Live collection: NodeList is a live collection meaning that it automatically updates when the underlying DOM changes.
+				3. Node references: NodeList contains references to actual nodes in the DOM, rather than copies of the nodes. 
+
+				TYPES OF NODELIST
+				1. Element NodesList: Contain only element nodes (HTML tags)
+				2. Child NodesLists: Contain all child nodes of a given element, including text nodes and comment nodes.
+
+				CREATING A NODELIST
+				1. QuerySelectorALL: returns a NodeList of elements that match a CSS selector
+				2. getElementsByClassName: Returns a NodeList of elements with a specified className.
+				3.childNodes: Returns a NodeList of child nodes for a given element.
+
+				e.g const paragraphs = document.querySelectorAll('p')
+				console.log(paragraphs.length)
+
+				And we can iterate over the nodeList like an array using the forloop or forEach loop.
+
+
+			*/
+				/*
+			          So far we have learnt about objects and how it allows us group values together. We also learnt that there are several built in objects in JS and we have seen quite a number of them. Math, JSON, localStorage, are some of them. The DOM is another built in object in called the document object. The document here refers to the html file and the dom is the object in JS specifically designed to directly interact with html elements. Or the DOM combines JS and HTML together and gives JS control over the webpage.
+			          */
+
+			   /*
+			    document.body.innerHTML = "hello";
+				document.title = 'Dom for beginners';
+			   */
+
+			//As we can see, the dom models the web page itself. Whatever we do with the dom object directly affects the web page itself, not our file. Nothing changes on our file.
+
+			//Hence why we have the DOM-document object model
+
+
+			//Important properties of the dom: Note that again document is a JS object, so as Math helps with Math, JSON helps with JSON, localStorage helps with storage, document helps with web page. we can console.log(document). So there are two important properties of the dom /not methods. document.title and docuemnt.body. We can access them directly without any attribute.
+				console.log(document.title); //used to get the title
+				document.title = 'Solodfada' ; //used to change the title
+
+				//In your minds eye, just picture that you are nowust picture that you are now document.body ie equivalent to to being inside the body element as if we are dealing with only html document. So document.body is just syntax
+
+				//An important thing to note in DOM is that when an HTML is inside JavaScript like we are seeing here pulled in by the document, that HTMl is converted to a JS object. We can see that by:
+
+			console.log(typeof document.body); //object
+
+			 //because it is an object, we have some properties like innerHTML which can take text and html elements but we must write in the elements we want ourselves.
+			console.log(document.body.innerHTML); //we got all the HTML inside the body element.
+			document.body.innerHTML = "hello"; //inplace of all its HTML, replace with this. But this is rare.
+			document.body.innerHTML = '<button>Good Job</button>';
+
+			//Now we learn about some important methods: document.querySelector(): Powerful because it lets us get the first matching element passed as argument and document.querySelectorAll() lets us grab all matching element name. It can also get by id, class, and even specific attribute like url or even as a combination, document.querySelector('p .myclass #myId') Note you must use the symbol along with the name if they arenot elemts. If we use document.querySelectorAll() we return a nodeList. Because of its behavior, document.getElementById() etc are prefered.
+
+			console.log(document.querySelector('button')); //picture a button element. Every HTML element has an innerHTML attribute (remember it is now an object)- And some attributes like innerHTML allows us control what innerHTML content will be, be it only text or nested HTML element. this syntax is JS version of saying button element or think of it as JS has selected the button element. but as said earlier, once an element inside JS, it becomes an object and has properties and methods. And because objects are also js values, we can assign them to variables.
+
+			const buttonElement = document.querySelector('button') //it is an object so can be a value but best to picture it as only the element
+		</script>
+	</body>
+</html>

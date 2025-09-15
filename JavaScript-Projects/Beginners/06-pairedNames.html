@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Pair People Game</title>
+  </head>
+  <body>
+    <div>
+      <span id="warning"></span>
+      <form
+        action=""
+        id="name-form">
+        <input
+          type="text"
+          ,
+          id="name-input"
+          ,
+          placeholder="Enter your full name" />
+        <input
+          type="text"
+          id="output"
+          disabled />
+        <input
+          type="submit"
+          value="Submit" />
+        <div><ol id="names-list"></ol></div>
+      </form>
+    </div>
+    <script>
+
+        const names = ['solomon ojiako', 'gbenga koya', 'margaret nyelong', 'oladotun folarin', 'onyinye ikeriehi', 'temitope oladipupo', 'tomiwa alo', 'abeeb junaid', 'ifeoluwa alasi', 'kingsley eze', 'toheeb raufu', 'rosanwo olugbo', 'oladunni akande', 'peter onyeoziri', 'eguonor oghoro', 'kehinde ige', 'blessing bassey', 'erhomo mafuru', 'nkechi idoko', 'etinosa adeyemo']
+
+        //recall that the relationship between HTML and JS is that every element we are using or intend to use must be made a variable as they are going to hold some form of value or we want to do some sort of operation on them. Hence attributes help us id those elements and dom gives us the tool to grab them and make them variables.
+
+        const nameForm = document.getElementById('name-form')
+        const nameInput = document.getElementById('name-input')
+        const namesList = document.getElementById('names-list')
+        const alerts = document.getElementById('warning')
+
+        const namesArray = []
+        let pairedNames = JSON.parse(localStorage.getItem('pairedNames')) || {}
+        console.log(pairedNames)
+
+        //I want to disable the form from submittng to the web so i needed to grab it.
+        nameForm.addEventListener('submit', (e) => {
+            e.preventDefault()
+            const name = nameInput.value.trim() //incase of spaces
+            //in forms we do not want to also deal with empty submissions
+            if ((name !== '') && !namesArray.includes(name)) {
+                alerts.innerHTML = ''
+                namesArray.push(name)
+                nameInput.value = ''
+                updateNameList()
+                selectRandomName(name)
+                pairedNames[name] = selectRandomName(name)
+                localStorage.setItem('pairedNames', JSON.stringify(pairedNames))
+
+            }else if (name === '') {
+                alerts.innerHTML = ''
+                const warning = document.createElement('p')
+                warning.innerText = "Your name cannot be blank"
+                alerts.appendChild(warning)
+            } else {
+                alerts.innerHTML = ''
+                const warning = document.createElement('p')
+                warning.innerText = "Your name already exist"
+                alerts.appendChild(warning)
+            }
+
+
+        })
+
+        //thought of displaying everybody who has submitted their names in a list for all to see
+
+        function updateNameList() {
+            //if namesList is not cleared, anytime the function is called, it will append below already existing data which is not needed because for every new name entry into the list, the forEach loop is run.
+            namesList.innerHTML = ''
+            namesArray.forEach((name) => {
+                //we created an element and gave it a value but it is floating
+                const listItem = document.createElement('li')
+                listItem.textContent = name.toUpperCase()
+                //we now append it somewhere on our page
+                namesList.appendChild(listItem)
+            })
+            console.log(namesArray)
+        }
+
+        function selectRandomName(nameToSkip) {
+            //check if names array is empty and return early.
+            if (names.length === 0) {
+                const warning = document.createElement('p')
+                warning.innerText = "No more names left to pair"
+                alerts.appendChild(warning)
+                return
+            }
+            const indexFromRandom = Math.floor(Math.random() * names.length)
+            const selectedName = names.splice(indexFromRandom,1)[0]
+
+            if (selectedName === nameToSkip) {
+                return selectRandomName(nameToSkip)
+            } else {
+                return selectedName
+            }
+        }
+      //first we have a array of names
+
+
+        //next we generate a random integer based on the length of the array. Since Math.floor(Math.random() * names.length will generate an integer whose min is 0 and max is 1 less the lenth of the array. Brings to mind that an total number of indexes in an array is 1 less than the list array.length
+
+        // const indexFromRandom = Math.floor(Math.random() * names.length)
+        // const getNameFromArray = names.splice(indexFromRandom,1)[0]
+        // console.log(getNameFromArray)
+    </script>
+  </body>
+</html>

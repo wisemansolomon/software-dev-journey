@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layout 1 Without CSS Grid</title>
+  <style>
+    * {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .profile-container {
+      display: inline-block;
+      width: 200px;
+      box-shadow: 0px 0px 5px rgba(96, 96, 96, 0.5);
+      margin-left: 5px;
+      margin-top: 5px;
+    }
+
+    .profile-image-container {
+      width: 200px;
+      height:200px;
+    }
+
+    .profile-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .logo-container {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+
+    }
+
+    .logo-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .friends-data-container {
+      display: inline-block;
+      width: 140px;
+      vertical-align: top;
+      height: 40px;
+      margin-bottom: 7px;
+      /*background-color: rgb(81, 144, 144);*/
+
+    }
+
+    .friends-data-container > p {
+      font-size: 12px;
+      color: rgb(96, 96, 96);
+      margin-top: 10px;
+      
+    }
+
+    .profile-name {
+      font-weight:bold ;
+      margin-bottom: 4px;
+    }
+
+    .add-btn {
+      background-color:rgb(7, 147, 247) ;
+      color: white;
+      border: none;
+      padding: 9px 15px;
+      border-radius: 3px;
+    }
+
+    .profile-data-container {
+      margin: 6px;
+    }
+    
+  </style>
+</head>
+<body>
+    <div class="profile-container">
+      <div class="profile-image-container">
+        <img class="profile-image" src="random-images/bird-1.jpg" alt="">
+      </div>
+      <div class="profile-data-container">
+        <p class="profile-name">Oliver</p>
+        <div class="logo-and-friends-container">
+          <div class="logo-container">
+            <img class="logo-image" src="random-images/bird-1.jpg" alt="">
+          </div>
+          <div class="friends-data-container">
+            <p>2 Mutual Friends</p>
+          </div>
+        </div>
+        <div class="add-btn-container">
+          <button class="add-btn">Add Friend</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-container">
+      <div class="profile-image-container">
+        <img class="profile-image" src="random-images/parrot-1.jpg" alt="">
+      </div>
+      <div class="profile-data-container">
+        <p class="profile-name">Rex</p>
+        <div class="logo-and-friends-container">
+          <div class="logo-container">
+            <img class="logo-image" src="random-images/parrot-1.jpg" alt="">
+          </div>
+          <div class="friends-data-container">
+            <p>7 Mutual Friends</p>
+          </div>
+        </div>
+        <div class="add-btn-container">
+          <button class="add-btn">Add Friend</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-container">
+      <div class="profile-image-container">
+        <img class="profile-image" src="random-images/bird-2.jpg" alt="">
+      </div>
+      <div class="profile-data-container">
+        <p class="profile-name">Mimi</p>
+        <div class="logo-and-friends-container">
+          <div class="logo-container">
+            <img class="logo-image" src="random-images/bird-2.jpg" alt="">
+          </div>
+          <div class="friends-data-container">
+            <p>5 Mutual Friends</p>
+          </div>
+        </div>
+        <div class="add-btn-container">
+          <button class="add-btn">Add Friend</button>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

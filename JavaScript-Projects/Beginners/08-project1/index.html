@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Buttons Project</title>
+		<link
+			rel="stylesheet"
+			href="style.css" />
+	</head>
+	<body>
+		<div>
+			<button class="cart-add">Add to Cart</button>
+		</div>
+		<div>
+			<button class="uber-btn request-btn">Request now</button>
+			<button class="uber-btn schedule-btn">Schedule for later</button>
+		</div>
+		<div>
+			<button
+				class="btn game-button"
+				onclick="
+            // button1.classList.toggle('game-button1')
+            turnOnOff(button1)
+            
+            // ">
+				Gaming
+			</button>
+
+			<button
+				class="btn music-button"
+				onclick="
+            // button1.classList.toggle('game-button1')
+            turnOnOff(button2)
+            
+            // ">
+				Music
+			</button>
+
+			<button
+				class="btn tech-button"
+				onclick="
+            // button1.classList.toggle('game-button1')
+            turnOnOff(button3)
+            
+            // ">
+				Tech
+			</button>
+		</div>
+
+		<div>
+			<button
+				class="btn game-button2"
+				onclick="
+            turnOnOff2('.game-button2')
+            
+            // ">
+				Gaming
+			</button>
+
+			<button
+				class="btn music-button2"
+				onclick="
+            turnOnOff2('.music-button2')
+            
+            // ">
+				Music
+			</button>
+
+			<button
+				class="btn tech-button2"
+				onclick="
+            turnOnOff2('.tech-button2')
+            
+            // ">
+				Tech
+			</button>
+		</div>
+
+		<script>
+			// recall that we needed to select all the elements 1 after the other because querySelector() only selects the first element with a class name, and anything about that class name will target that first element
+			const button1 = document.querySelector('.game-button')
+			const button2 = document.querySelector('.music-button')
+			const button3 = document.querySelector('.tech-button')
+
+
+			         //we could also pass the classname (which is variable) while we select the button element into our JS within the function, thereby encapsulating the data
+
+			         // function turnOnOff2 (className) {
+			         //     const btnId = document.querySelector(className);
+			         //     if (!btnId.classList.contains('game-button1')) {
+			         //         btnId.classList.add('game-button1')
+			         //     } else {
+			         //         btnId.classList.remove('game-button1')
+			         //     }
+			         // }
+
+
+			         //or passing the button
+			function turnOnOff (btnId) {
+			    if (!btnId.classList.contains('game-button1')) {
+			        btnId.classList.add('game-button1')
+			    } else {
+			        btnId.classList.remove('game-button1')
+			    }
+			}
+
+			         /*suppose we want only the current clicked button to be turned on at any point in time while the other buttons are off.  One way to handle it is to think critically. If a button is on, it implies that the classList is added already right, so we select the the element of interest to toggle with the base class element and also select the already added element with the added class name. check for it, remove it, and turn on the current.*/
+			function turnOnOff2 (className) {
+			    const btnId = document.querySelector(className);
+			    const alreadyAdded = document.querySelector('.game-button1');
+
+			    if (!btnId.classList.contains('game-button1')) {
+			                 if (alreadyAdded) {
+			            alreadyAdded.classList.remove('game-button1');
+			                 }
+			                 btnId.classList.add('game-button1');
+			    }else {
+			                 btnId.classList.remove('game-button1');
+			             }
+			}
+		</script>
+	</body>
+</html>

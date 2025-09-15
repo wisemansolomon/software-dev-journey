@@ -1,0 +1,61 @@
+/* Before the styling is applied, notice that the output are not aligned properly and also when developing if we want our ouputs to be displayed in a well defined layout, We can do this with css (flexbox and or grid), that was the reason a div was used as the and usually very good to set layout first before colors and others. */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* as we set the grid, the paragraph element content in our js was squished into the column so one way to correct it, is to go to our js and break up the html rendering template string. Hint: Before the CSS grid, think of the webpage as a plain A4 paper. We can write on it but most times our writeup will not be organized and evenly spaced-out by styling. The css - grid can be thought of as a those horizontal lines in our exercise books except in this case they are vertical, although we can set rows as well. by default every HTML ELEMENT in order of appearance (either by hardcode or softcode) by default takes the next available grid from left to right in a snake-crawl-downward pattern/zig-zag downward pattern. Often times we set a grid using a div element bcos they have no default styling so they are easy to make grids out off. All elements be it <span>, <input> <button> <p> and if so on act like block elements in a grid each taking a next free space to the right. Also, notice how we style multipe classes using comma to separate the classes if we want the classes to have the same styling. 
+
+One more thing to take note of is that as the elements wrap based on the number of grids columns we define, the ones taking up space below are in a way forming their own invisible row grid, so styling them without explicit rows being defined is made possible. Lastly, css is for stying elements be it <body>, buttons, input elements, <p>, <div> and when they are together in the same container, a particular styling may distort a certain type of element different from others due to each default styling.e.g when we selected the input and output div containers if an element has a styling that will counter the styling/alignment imposed via container proxy, the element's style more often supercedes otherwise, if we want the element to have a style after proxy alignments have been applied, the element(s) needs to be selected and styled*/
+.todo-grid, 
+.todo-input-grid {
+ 
+    display: grid;
+    grid-template-columns: 200px 150px 100px;
+    /* spacing 'btwn' two or more sibling element of a display grid. If an adjoining element is not a sibling, there wont be a gap.in that case we use a margin-and this usually will be btween the containers and not the children
+     */
+    column-gap: 10px;
+    row-gap: 10px;
+    /* next i observed that the alignment of my text in the vertical direction was towards the top so align*/
+    align-items: center;
+
+
+}
+
+.todo-input-grid {
+    margin-bottom: 10px;
+    /* by default align items is stretch,but if we center and it looks weird, select the element/container and reverse the alignment */
+    align-items: stretch;
+}
+
+
+
+/* We also want to use a grid to span out the imput elements and Add button and to do that we contain the input in a div and separate each input and Add button in individual divs. Notice that we write this into the HTML file directly */
+
+.name-input,
+.due-date-input {
+    font-size: 13px;
+    padding: 7px;
+}
+
+.add-todo-button {
+    background-color: green;
+    color: white;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    
+
+}
+
+/* this button was added with JS so that is where we added this class */
+.delete-todo-button {
+    background-color: darkred;
+    color: white;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

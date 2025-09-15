@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Variable Exercises</title>
+	</head>
+	<body>
+		<!-- This mini project assumes we have a commerce app where we can add an item to cart and then increase the item's count by 2 or 3, show the cart quantity and reset the cart and displaying update on page-->
+		<button
+			onclick="
+        display.innerHTML = `Cart Quantity: ${cartQuantity}`
+    ">
+			Show Quantity
+		</button>
+
+		<!-- Add to cart implies increment quantity by 1 -->
+		<button
+			onclick="
+        updateCartQuantity(1)
+    ">
+			Add to Cart
+		</button>
+
+		<button
+			onclick="
+        updateCartQuantity(2)
+    ">
+			+2
+		</button>
+
+		<button
+			onclick="
+        updateCartQuantity(3)
+    ">
+			+3
+		</button>
+
+		<button
+			onclick="
+        updateCartQuantity(4)
+    ">
+			+4
+		</button>
+
+		<button
+			onclick="
+        updateCartQuantity(5)
+    ">
+			+5
+		</button>
+
+		<button
+			onclick="
+        updateCartQuantity(-1)
+    ">
+			Remove from Cart
+		</button>
+
+		<button
+			onclick="
+        updateCartQuantity(-2)
+    
+    ">
+			-2
+		</button>
+		<button
+			onclick="
+        updateCartQuantity(-3)
+  
+    
+    ">
+			-3
+		</button>
+		<button
+			onclick="
+        cartQuantity = 0
+        display.innerHTML = `Cart was reset. Cart Quantity: ${cartQuantity}`
+    
+    ">
+			Reset Cart
+		</button>
+
+		<p class="display"></p>
+
+		<script>
+			  const display = document.querySelector('.display')
+			  let cartQuantity = JSON.parse(localStorage.getItem('cartQuantity')) || 0;
+			  display.innerHTML = `Cart Quantity: ${cartQuantity}`
+
+
+			function updateCartQuantity(value) {
+			     //i refactored my function from the last project in variables/
+			     if (cartQuantity + value < 0) {
+			           //values are negative or positive making this function possible.
+			         display.innerHTML =`Cart Quantity does not have enough items: ${cartQuantity}`
+			     } else {
+			         cartQuantity += value
+			          localStorage.setItem('cartQuantity', JSON.stringify(cartQuantity))
+			          display.innerHTML = `Cart Quantity: ${cartQuantity}`
+			     }
+
+			}
+		</script>
+	</body>
+</html>

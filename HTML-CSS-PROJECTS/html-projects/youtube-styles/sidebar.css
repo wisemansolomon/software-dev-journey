@@ -1,0 +1,90 @@
+
+/* The initial project sidebar style was what we have in media 1199px. However to add more flair to project, I added another responsive sidebar. Initially I tried to just write media query for 1200px and select just a few of my selectors but it didnt work because the initial general style  */
+/* @media (max-width: 1199) { */
+  .sidebar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 55px;
+    background-color: white;
+    width: 80px;
+    padding-top: 5px;
+    z-index: 200;
+  }
+  
+  .sidebar-link {
+    height: 75px;
+    /* to center the icons */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  
+  .sidebar-link:hover {
+    background-color: rgb(240, 240, 240);
+  }
+  
+  
+  .sidebar-link img {
+    height: 26px;
+    margin-bottom: 4px;
+  }
+  
+  .sidebar-link p {
+    /* font-family: roboto, Arial, Helvetica, sans-serif; Due to inheritance */
+    font-size: 12px;
+    text-align: center;
+  
+  }
+  
+/* } */
+
+@media (min-width: 1200px) {
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 55px;
+    background-color: white;
+    width: 200px;
+    padding-top: 5px;
+    z-index: 200;
+  }
+  
+  .sidebar-link {
+    height: 50px;
+    /* to center the icons */
+    display: flex;
+    align-items: center;
+    justify-content: normal;
+    flex-direction: row;
+    cursor: pointer;
+  }
+  
+  .sidebar-link:hover {
+    background-color: rgb(240, 240, 240);
+  }
+  
+  
+  .sidebar-link img {
+    height: 26px;
+    margin-bottom: 4px;
+    margin-left: 27px;
+  }
+  
+  .sidebar-link p {
+    /* font-family: roboto, Arial, Helvetica, sans-serif; Due to inheritance */
+    font-size: 12px;
+    text-align: center;
+    margin-left: 22px;
+  
+  }
+
+  body {
+    padding-left: 210px;
+  }
+
+}

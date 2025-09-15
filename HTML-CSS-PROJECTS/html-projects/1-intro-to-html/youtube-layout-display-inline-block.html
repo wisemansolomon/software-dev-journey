@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <title>Youtube Clone</title>
+
+  <style>
+    p {
+      font-family:roboto, Arial, Helvetica, sans-serif;/*font stack allowing loading a backup font*/
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .search-bar {
+      display: block;
+    }
+    .video-preview {
+      width: 300px;
+      display: inline-block;
+      vertical-align: top; /* as against baseline*/
+      margin-right: 15px;
+    }
+
+    .thumbnail {
+      width: 100%;
+    }
+
+    .channel-picture {
+      display: inline-block;
+      width: 50px;
+      vertical-align: top;
+      
+    }
+
+    .profile-picture {
+      width: 80%;
+      /*vertical-align: top;*/ /*Did not work because setting on image intead of the container*/
+      border-radius: 50%; /*note: property applied on content not container*/
+    }
+
+    .video-info {
+      display: inline-block;
+      width: 240px;
+    }
+    
+    .video-title {
+      margin-top: 0; /*remove paragraph default margin seen on devtools*/
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 19px;
+      margin-bottom: 12px;
+    }
+
+    .thumbnail-row {
+      margin-bottom: 10px;
+    }
+
+    .video-author {
+      font-size: 12px;
+      color: rgb(96, 96, 96);
+      margin-bottom: 5px;
+    }
+
+    .video-stats {
+      font-size: 12px;
+      color: rgb(96, 96, 96);
+      
+    }
+  </style>
+</head>
+<body>
+  <input class="search-bar" type="text" placeholder="Search">
+
+  <div class="video-preview">
+    <div class="thumbnail-row">
+      <img class="thumbnail" src="thumbnails/thumbnail-1.webp" alt="">
+    </div>
+    <div>
+      <div class="channel-picture">
+        <img class="profile-picture" src="channel-images/channel-1.jpeg" alt="">
+      </div>
+      <div class="video-info">
+        <p class="video-title">
+          Talking Tech and AI with Google CEO Sundar Pichai!
+        </p>
+        <p class="video-author">
+          Marques Brownlee
+        </p>
+        <p class="video-stats">
+          3.4M views &middot; 6 months ago
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="video-preview">
+    <div class="thumbnail-row">
+      <img class="thumbnail" src="thumbnails/thumbnail-2.webp" alt="">
+    </div>
+    <div>
+      <div class="channel-picture">
+        <img class="profile-picture" src="channel-images/channel-2.jpeg" alt="">
+      </div>
+      <div class="video-info">
+        <p class="video-title">
+          Try Not To Laugh Challenge #9
+        </p>
+        <p class="video-author">
+          Markiplier
+        </p>
+        <p class="video-stats">
+          19M views &middot; 4 years ago
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="video-preview">
+    <img class="thumbnail" src="thumbnails/thumbnail-2.webp" alt="">
+    <p class="video-title">
+      Try Not To Laugh Challenge #9 
+    </p>
+    <p class="video-author">
+      Markiplier
+    </p>
+    <p>
+      19M views &middot; 4 years ago
+    </p>
+    
+  </div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+  </head>
+  <body>
+    <p>Rock Paper Scissors</p>
+    <!-- Recall our initial algorithm is
+    1. Computer randomly selects a move
+    2. Compare the move with player move to get a score
+    3. Display the result in a popup.
+    Now we amend step 3. Update a score and step 4. Display the result in a popup. 
+    New algorithm:
+    1. Computer randomly selects a move
+    2. Compare the move with player move to get a score
+    3. Display the result in a popup
+    3. Update a score
+    4. Display the result and score in a popup
+
+    -->
+
+    <button
+      onclick="
+      playRPSGame('rock')
+
+    ">
+      Rock
+    </button>
+
+    <button
+      onclick="
+    playRPSGame('paper')
+    ">
+      Paper
+    </button>
+
+    <button
+      onclick="
+      playRPSGame('scissors')
+    ">
+      Scissors
+    </button>
+
+    <!-- Adding a new Rest Score button to reset the score. -->
+    <button
+      onclick="
+        score.wins = 0
+        score.losses = 0
+        score.ties = 0
+
+        //this feature is no longer fail proof because as we recall, all variables state are lost whena program refreshes and starts from the top again. It works if the program is not refreshed but if after we reset the score and the program refreshes, it is the value previosly stored in localStorage that is retrieved. So along with setting variables to zero, we must also remove the existing value from local storage
+        
+        localStorage.removeItem('score') //the item associated with the key 'score' is now null. Null is value in JS do not forget, but our score variable has a dependency on where our score-variables are from. When we load the page, key 'score' now associated with value null. So to fix this, we need to tweak our program, not the playRPSGame, but the global scope related to our variable.
+
+
+    ">
+      Reset Score
+    </button>
+
+    <script>
+            //We could have used separate variables but we want to show how objects makes our code clean and demonstrate the use of multiple values together. Also notice that the object is not scoped and not within a function. If it was, it would reset the score every time the function is called and will therefore not update but reset.
+
+            let score = JSON.parse(localStorage.getItem("score")) || {
+              wins: 0,
+              losses: 0,
+              ties: 0,
+            }; //this evals to the JS object, but because we get the object from local storage in a previosuly updated state, refreshing the file/the page just goes to local storage to retrieve the prev stored value and updates it. So this way, we have succeeded in making a variable hold a value even if program is refreshed. But recall that there must be a starting point.
+
+            //Because we removeItem from local storage, we solve the resulting error by giving score a default value. Will be skipped if not truthy. And because we need to re-assign score, we now change it to let.
+
+            /*
+            //logical not operator is checking is the operand falsy or truthy state. Such as asking, if value in score when flipped will give truthy and the ans is yes/truthy then run the code. Shorthand way of writing if(score===null). But an even shorter way is to use the default operator
+
+            if (!score) {
+              score = { wins: 0, losses: 0, ties: 0 };
+            }
+              */
+            function generateComputerMove() {
+              const randomNumber = Math.random();
+
+              let computerMove = "";
+
+              if (randomNumber >= 0 && randomNumber < 1 / 3) {
+                computerMove = "rock";
+              } else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
+                computerMove = "paper";
+              } else if (randomNumber >= 2 / 3 && randomNumber < 3 / 3) {
+                computerMove = "scissors";
+              }
+              return computerMove;
+            }
+
+            function playRPSGame(playerMove) {
+              const computerMove = generateComputerMove();
+              let result = "";
+
+              //Notice that this logic anticipates what the input will be and performs an action.
+              if (playerMove === "rock") {
+                if (computerMove === "rock") {
+                  result = "Tie.";
+                } else if (computerMove === "paper") {
+                  result = "You lose.";
+                } else if (computerMove === "scissors") {
+                  result = "You win.";
+                }
+              } else if (playerMove === "paper") {
+                if (computerMove === "rock") {
+                  result = "You win.";
+                } else if (computerMove === "paper") {
+                  result = "Tie.";
+                } else if (computerMove === "scissors") {
+                  result = "You lose.";
+                }
+              } else if (playerMove === "scissors") {
+                if (computerMove === "rock") {
+                  result = "You lose.";
+                } else if (computerMove === "paper") {
+                  result = "You win.";
+                } else if (computerMove === "scissors") {
+                  result = "Tie.";
+                }
+              }
+
+              //update score with its values.:
+              if (result === "You win.") {
+                score.wins++;
+              } else if (result === "You lose.") {
+                score.losses++;
+              } else if (result === "Tie.") {
+                score.ties++;
+              }
+
+              // We use localStorage to store our stringified score. Notice we wrapped stringified value within localStorage.setItem(). But to getItem, we wrap localStorage.getItem() within JSON.parsed()
+              localStorage.setItem("score", JSON.stringify(score));
+
+              //Now we update the popup for a new updated information
+              alert(
+                `You picked ${playerMove}, computer picked ${computerMove}. ${result}
+      Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`
+              );
+            }
+
+            //Pay attention to how we used the local storage:
+            /*
+              1. we had our JS object at early on development. Ten we decided to make it more permanent
+              2. We strigified/serialize the score object and passed it to setItem() - it is now a different entity on its own (stringified is a diff entity and setItem stores it But this entity is still an object structured string..) The saved value is having the current state.
+              3. We retrieve using localStorage.getItem('name'). Still a string but if we parse it, it becomes the originally stored object of that updated state at that time. if our program simply updates it, and stores it again, we will now have a cycle of: (JS object -> JSON object -> to localStorage -> from localStorage -> to JS object again -> repeat)
+
+              this means that our score variable is assigned to be a parsed version of a localStorage-stored version of our initial instance of a JS object named score
+
+              Second thing we did was to adjust reset score meaning we had to fix a dependency issue with our score variable.
+            */
+    </script>
+  </body>
+</html>

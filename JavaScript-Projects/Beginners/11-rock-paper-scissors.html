@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Rock Paper Scissors</title>
+		<link
+			rel="stylesheet"
+			href="styles/11-rock-paper-scissors.css" />
+	</head>
+	<body>
+		<p class="title-1">Play Game</p>
+		<p class="title-2">Rock Paper Scissors</p>
+		<!-- Recall our initial algorithm is...check previos versions
+
+    This project is about styling our game with icons such that the buttons will be replaced with icons and the moves picked by either player and computer will also be same icon. And finally separate the different technologies into different files, as required by best practice.
+
+    -->
+
+		<button
+			class="move-button js-rock-btn">
+			<!-- notice we specifically added class to the image tag to style the image and not the button because it didnt work otherwise -->
+			<img
+				src="images/image-rock.png"
+				class="move-icon" />
+		</button>
+
+		<button
+			class="move-button js-paper-btn">
+			<img
+				src="images/image-paper.png"
+				class="move-icon" />
+		</button>
+
+		<button
+			class="move-button js-scissor-btn">
+			<img
+				src="images/image-scissors.png"
+				class="move-icon" />
+		</button>
+
+		<!-- We used a clever way to insert images. By naming the image a name that takes part of its name from the playerMove variable, when we interpolate the name of our playerMoves var into the image name completing the image name and in so doing dynamically changing the image as the playerMove variable changes when we play the game we are able to pass the images in our innerHTML as a variable. But ensure all images are in the same format png or jpeg
+		
+		Used the below template to write and format the image and removed afterwards.
+		You <img src="image-rock.jpeg" alt="" class="move-button"> <img src="image-scissors.png" alt="" class="move-button"> Computer
+		-->
+		<p class="js-result css-result"></p>
+
+		<p class="js-move"></p>
+
+		<!-- We need an element in which to display and also choose a position on our page where it should be displayed. So we create one -->
+		<p class="js-score css-scoreboard"></p>
+
+		<!-- Adding a new Rest Score button to reset the score. -->
+		<button
+			class="reset-score-button js-reset-btn">
+			Reset Score
+		</button>
+
+		<button class="auto-play-btn js-autoplay-btn">Auto Play</button>
+
+		<script src="/scripts/11-rock-paper-scissors.js"></script>
+
+	</body>
+</html>

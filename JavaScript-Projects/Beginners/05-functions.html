@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Functions</title>
+  </head>
+  <body>
+    <!-- In this program, we want to improve our rock paper scissors game with functions-where we wrap most of the code logic in 
+     functions for re-usability. But we must fist understand a few key aspect of functions. -->
+    <script>
+      //As a programmer, it makes sense to see a blank program file as a global function template where the curly bracket of a function is represented by the file (script tag or a .js file).
+      //The thing to note here is that as we declare variables and if statements etc, we picture in our mind's eye that we are writing a function but this function does not pass variables, so we
+      //can only declare variables to re-use values or collect values. But encapsulation entails that we make our code abstract so any interation will only be the barest and necessary program so
+      //we now have to write smaller functions within our global file functions we can pass values to it through three ways.
+      // 1) is by passing an actual value or variable to a function via parameter ( A parameter we can think of as a placeholder for a value or varible from the global space during call. Note that the variables can from perform some sort of data manipulation in another program e.g randomly accessing an array etc and passing it, or taking a user input
+      //or associating a specific input to a user's action (not direct user input.)
+      // 2)The second way is by declaring a variable inside the function. Another best practice to remember is that if we do not need a variable to exist in the
+      //global space in our program, we encapsulate it in an overaching function taking all other. even if it is a returned value that we need for another function, if our program does not need it outside of that one function, we encapsulate
+      //rather than creating a global variable for the returned value.
+
+      //A function can be defined as a special syntax that let's us write a program that we can re-use OR let's us package already written program to be re-used.
+      //So one is that we write a function from the onset, while the other is that we write a program then re-factor it ones we see repetitions.
+
+      //A function is a block of code that performs a specific task. It can accept parameters and return values. This is the formal definition.
+      //Parameters is how we pass values to a function and return values is how we get values back from a function. So a function's return value is what a function evaluates to.
+      //Not all function requires parameters and return values. It is only a need to basis. Functions can also be nested, meaning they can be defined/callled inside other functions.
+      //functions also make our code easier to update in the future. rather tah several places, we update just in a single place.
+
+      //Create a function convert to Celcius/Farenheit where F = (Celcius*9/5)+32 and C=(Farenheit-32)*5/9 and display each conversion with it's unit.
+      function convertTemperature(fromDegreeType, toUnit) {
+        //code
+        if (toUnit === "F") {
+          const F = fromDegreeType * (9 / 5) + 32;
+          return `${fromDegreeType}C is ${F}F`;
+        } else if (toUnit === "C") {
+          const C = (fromDegreeType - 32) * (5 / 9);
+          return `${fromDegreeType}F is ${C}C`;
+        }
+      }
+
+      console.log(convertTemperature(25, "F"));
+
+      //write a function convertLength(lengh, from, to) that takes a number and unit ('km' or 'miles' or 'feet') and converts it to another unit ('km' or 'miles' or 'feet') N/B 1 mile = 1.6 km = 5280 ft. Also use a validation to ensure that the correct input was entered for both units. We can actually use a list
+
+      function convertLength(value, from, to) {
+        // if (!((from === 'miles' || from === 'km' || from === 'feet') && (to === 'miles' || to === 'km' || to === 'feet'))) {
+        //   const message = `invalid units- from ${from} to ${to}`;
+        //   return message;
+        // }
+
+        const input = ["miles", "km", "feet"];
+
+        if (!input.includes(from) || !input.includes(to)) {
+          const message = `invalid units- from ${from} to ${to}`;
+          return message;
+        }
+
+        if (from === "miles") {
+          if (to === "km") {
+            const km = value * 1.6;
+            return `${km}km`;
+          } else if (to === "feet") {
+            const feet = value * 5280;
+            return `${feet}feet`;
+          } else if (to === "miles") {
+            return `${value}miles`;
+          }
+        } else if (from === "km") {
+          if (to === "miles") {
+            const miles = value / 1.6;
+            return `${miles}miles`;
+          } else if (to === "feet") {
+            const feet = value * 3281;
+            return `${feet}feet`;
+          } else if (to === "km") {
+            return `${value}km`;
+          }
+        } else if (from === "feet") {
+          if (to === "miles") {
+            const miles = value / 5280;
+            return `${miles}miles`;
+          } else if (to === "km") {
+            const km = value / 3281;
+            return `${km}km`;
+          } else if (to === "feet") {
+            return `${value}feet`;
+          }
+        }
+      }
+
+      console.log(convertLength(32, "feet", "feet"));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+
+body {
+    background-color: rgb(25, 25, 25);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes blink {
+    0%, 100% {opacity: 1;}
+    50% {opacity: 0}
+}
+
+.title-1 {
+    font-size: 40px;
+    color: aquamarine;
+    animation: blink 1s linear infinite;
+}
+
+.title-2 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+.move-icon {
+    height: 50px;
+}
+
+.move-button {
+    background-color: white;
+    border: 3px solid white;
+    /* we would have used padding to set space within the button but our images are of different sizes so we just use width and height to set exact size */
+    width: 70px;
+    height: 70px;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.css-result {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 40px;
+}
+
+.css-scoreboard {
+    margin-top: 60px;
+}
+
+.reset-score-button,
+.auto-play-btn {
+    background-color: rgb(231, 223, 238);
+    padding: 8px 15px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+}

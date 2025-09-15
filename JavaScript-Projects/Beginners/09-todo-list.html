@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Todo List</title>
+		<link rel="stylesheet" href="styles/09-todo-list.css">
+	</head>
+	<body>
+		<!-- For this project, when we enter todo item and on clicking the add button, we update a list add a date and finally display every list item with a delete button for us to delete that item. Start with first principle. break the problem down into smaer problems
+     1. create input element and use js to collect it into a list
+     2. collect each value from list and display each on a web page
+     
+     3. make a button to later delete the completed todoItem from the array-->
+		<p>Todo List Practice 1</p>
+		<input
+			type="text"
+			placeholder="Todo name"
+			class="js-todo-list1" />
+		<button
+			onclick="
+        addTodoItem()
+    
+    ">
+			Add
+		</button>
+
+		<p>Todo List Practice 2</p>
+		<div class="todo-input-grid">
+			<input
+			type="text"
+			placeholder="Todo name"
+			class="js-todo-list2 name-input" />
+			<!-- add the date input but how do we link it to the todo item input, we will have to use object. So we started with an array of single entries but the array can be changed to contain objects of entries as we now have a new property related to the initial entries.-->
+			 <input type="date" class="js-todo-date due-date-input" />
+		<button
+			onclick="
+            addTodoItem2()
+        " class="add-todo-button">
+			Add
+		</button>
+
+		</div>
+		
+		<!-- used <p> initially but trying to do css grid failed, so used div -->
+		<div class="list-display todo-grid"></div>
+
+		<script src="scripts/09-todo-list.js"></script>
+	</body>
+</html>

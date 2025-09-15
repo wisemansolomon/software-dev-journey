@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Calculator</title>
+		<style>
+			* {
+			  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+			    "Lucida Sans", Arial, sans-serif;
+			  box-sizing: border-box;
+			}
+
+			.container {
+			  width: 100%;
+			  height: 100vh;
+			  background: #e3f9ff;
+			  display: flex;
+			  justify-content: center;
+			  align-items: center;
+			}
+
+			.calculator {
+			  background: #3a4452;
+			  padding: 20px;
+			  border-radius: 15px;
+			}
+
+			.display {
+			  display: flex;
+			  justify-content: flex-end;
+			  margin: 1.5rem 0;
+			}
+
+			.display input {
+			  /* background: transparent; */
+			  padding: 0 0.6rem;
+			  width: 100%;
+			  height: 60px;
+			  font-size: 1.6rem;
+			  box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1),
+			    5px 5px 15px rgba(0, 0, 0, 0.2);
+			  color: #fff;
+			  background-color: rgb(97, 231, 138);
+			  border: none;
+			  text-align: right;
+			  border-radius: 5px;
+			}
+
+			button {
+			  border: 0;
+			  outline: 0;
+			  width: 3.5rem;
+			  height: 3rem;
+			  border-radius: 10px;
+			  background: transparent;
+			  box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1),
+			    5px 5px 15px rgba(0, 0, 0, 0.2);
+			  font-size: 1.5rem;
+			  color: #fff;
+			  cursor: pointer;
+			  margin: 0.5rem;
+			}
+
+
+			#equal {
+			  background: rgb(204, 64, 64);
+			  width: 8.5rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="calculator">
+				<p style="color: #fff; text-align: center">
+					Designed by Solomon Ojiako
+				</p>
+				<!-- display section -->
+				<div class="display">
+					<input
+						type="text"
+						id="output"
+						disabled />
+				</div>
+				<!-- buttons section -->
+				<div>
+					<button
+						onclick="
+                        calculation = ''
+                        output.value = calculation
+                        // calculation = eval(calculation)
+                        // console.log(calculation)
+                        localStorage.removeItem('calculation')
+                ">
+						AC
+					</button>
+					<button
+						onclick="
+            output.value = output.value.slice(0, -1)
+            calculation = output.value
+          ">
+						DEL
+					</button>
+					<button
+						onclick="
+                updateCalculation('.')
+            ">
+						.
+					</button>
+					<button
+						onclick="
+                updateCalculation(' / ')
+            ">
+						/
+					</button>
+				</div>
+
+				<div>
+					<button
+						onclick="
+                        updateCalculation('7')
+                    ">
+						7
+					</button>
+					<button
+						onclick="
+                        updateCalculation('8')
+                    ">
+						8
+					</button>
+					<button
+						onclick="
+                        updateCalculation('9')
+                    ">
+						9
+					</button>
+					<button
+						onclick="
+                        updateCalculation(' * ')
+                    ">
+						*
+					</button>
+				</div>
+
+				<div>
+					<button
+						onclick="
+                        updateCalculation('4')
+                    ">
+						4
+					</button>
+					<button
+						onclick="
+                        updateCalculation('5')
+                    ">
+						5
+					</button>
+					<button
+						onclick="
+                        updateCalculation('6')
+                    
+                    ">
+						6
+					</button>
+					<button
+						onclick="
+                        updateCalculation(' - ')
+                    ">
+						-
+					</button>
+				</div>
+
+				<div>
+					<button
+						onclick="
+                        updateCalculation('1')
+                    ">
+						1
+					</button>
+					<button
+						onclick="
+                        updateCalculation('2')
+                    ">
+						2
+					</button>
+					<button
+						onclick="
+                        updateCalculation('3')
+
+                    
+                    ">
+						3
+					</button>
+					<button
+						onclick="
+
+                        updateCalculation(' + ')
+                        
+                    ">
+						+
+					</button>
+				</div>
+				<div>
+					<button
+						onclick="
+                        updateCalculation('00')
+                    ">
+						00
+					</button>
+					<button
+						onclick="
+                updateCalculation('0')
+            ">
+						0
+					</button>
+					<button
+						id="equal"
+						onclick="
+                        calculation = eval(calculation)
+                        output.value = calculation
+                        localStorage.setItem('calculation', JSON.stringify(calculation))
+                        // console.log(calculation)
+                    
+                    ">
+						=
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<script>
+
+			let calculation = JSON.parse(localStorage.getItem('calculation')) || "";
+			const output = document.getElementById("output");
+			output.value = calculation.toString()
+
+
+			function updateCalculation(value) {
+			  // calculation += value.toString();
+			  calculation += value;
+			  //what we are saving to local storage is same date we are displaying
+			  // localStorage.setItem('calculation', JSON.stringify(calculation))
+			  output.value = calculation;
+			}
+		</script>
+	</body>
+</html>

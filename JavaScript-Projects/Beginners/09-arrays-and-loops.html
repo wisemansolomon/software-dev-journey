@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Arrays and Loops</title>
+	</head>
+	<body>
+		<p>z</p>
+		<!-- What is an array in JS. An array is another type of value is JS meaning we can save them in variables and it represents a list of values which can be primitives and/or reference types or a mixture of them.
+
+		Another conceptualization that is very important to note is that as developers our interest in arrays often revolves around determing the index of a desired item. This information is useful in so many different ways like binary search, getting an item out of an array, initiating a loop, etc. It might be confusing to think but the program focuses on the rooms of the array given as indexes. What is stored is of secondary concern. When we think about an array, even the one we add objects to, do not think in terms of the object we are adding but think about the index or how we can determine the index that will enable us get the item. It is because we can see what we put but in fact the items are closed off in the array[index] locations.
+    
+    One fundamental things to note in software engineering is that everything we do in our code is in essence trying to resolve a simple or complex expression into any one of the primitive or reference type values in js be it strings, numbers, booleans, objects, arrays, functions etc. So always think, what value does this expression evaluate to and that woud guide your next step.
+
+    We can save an array in a variable and we can save an array within an array.
+
+    As a matter of fact, an array is an object and if we check the typeof of any array it will return an object. Just that an array is a special type of object. To actually check if an array is an array, we use a special query Array.isArray(theArray) which returns true or false
+
+    -->
+
+		<script>
+
+
+			    /*  1
+
+			const myArray = [1, 'hello', {name: 'socks'}, [1,2]]
+
+			console.log(typeof myArray)
+			console.log(Array.isArray(myArray))
+
+			//Because arrays are also objects, they have properties and methods like length, push(), splice(), slice(), etc. some methods modify the original array like push and splice modifies the array while some makes a copy and does something then return the copy without modifying the original array like slice.
+
+			myArray.push('solomon')
+			console.log(myArray)  //adds to the end
+
+			myArray.splice(0, 2, 'chukwuma')
+			console.log(myArray)
+
+
+			//Most code we write when we execute is single execution, but many at times, we want to automate the execution of a code without having to run the program manually all the time. This is where loop comes in. The lop construct is the concept a way to write a helper logic is kind of saying to you "I want to help you automate the execution of a code a number of times. Just provide how many times. But the number of times can be set up only by what computers understand which is a statement of a true or false. Thats why the for loop and the while run based on a comparison opertation. Note: the variable operand of the comparison is always on the left while the static operand is on the right. That is why when we loop and we initiate a loop variable, the loop variable is on the left while what we benchmark it against is on the right. Therefore bechmark is always on the right. We can use anything to execute/not a logic as long as results in a true/false. Even a conter variable we define for a logic can be checked against some benchmark in a comparison operation to execute/not execute a logic. continue is a logic, break is a logic, splice is a logic, slice is a logic, count is a logic, pick from an aray and put into another array is a logic. We can have logic within logic, within logic"
+
+			//Loops: Actually loops originated from a 'while' logic. in real world, if we want to do something multiple times, we have some real world variable we usually reference and say, i spend an max of 30mins reading after which i rest. My loop will be while timer is above zero, keep reading and get timer ticking otherwise i will read forever. In real life, if i want to do something multiple times, number of times already done is 0 but as we finish each lap, we update number of times by 1. That is what the loop variable represents. The loop variable is the variable that keeps track of the number of times the loop has run. The loop condition is the condition that must be met for the loop to continue running. The loop increment is the code that updates the loop variable.
+
+			//So for every loop, there is  loop variable, a loop condition dependent on that variable(another name for loop condition is "as long as condition" because as the loop continues, the check is done and as long as the conition still holds true. Infact most conditions we specify within a loop execution is an "as long as condition" and not a if and when it happens condition), 
+			
+			
+			//Follwed by a way to elapse the loop variable to cancel the loop and then the logic we want to execute within the loop like read. It is important to note that the loop condition is an 'at this very moment condition or currently is what is the state. e.g i <= 0 implies i is currently'. The difference btw the loop condition that drives the loop and the if condition is that if is a condition to  anticipate a condition that may have be true in the future. Note also that the increment/decrement is manually inserted in the code body so to avoid an infinite loop, we must always ensure that the incre is placed strategically. Sometimes we even see a situation where we need 2 increment steps in diff positions to cater for different situation as we will see later down
+
+			let i = 0;
+			while (i <= 5) {
+			console.log(i);  //the code to be looped
+			i++;
+			}
+
+			// but a concise way of writing this base loop was developed. Think of it like a resemblance to if (condition) but for (loop var & start point; condition based on var; incre/decre step for lpp var). In this syntax, the incre/decre step is automatic meaning that whatever we execute in the code body as long as we do not break, i is incremented or decremented
+
+			for (let i = 0; i <= 5; i++) {
+			console.log(i);
+			}
+
+			//When do we use which? The for-Loop is best used for standard loops where we know/want a certain number of iteration which can be based on a known number. Thid number can based on a number of things e.g an integer or any exppression thst will evaluate into an integer ie we care about the outcome and number of times because we often use this output for something in our program. But the while-Loop is for non-standard iteration where we really do not know/care the number of times the loop runs but we care only about the outcome, e.g Math.random() generates number between 0 and 1. Suppose we want a to set into motion a loopo of events (program) that keeps running until a certain random event happens, e.g keep a game running until a player life is exhausted or paused or stopped or some other random event happens like generating number of enemies or generating position where somethings appear, all of these will be best suited for a while loop and a condition to end it but the number of times cannot be determined. Some conditions are self limiting like below while some can be explicitly defined to exit the loop.
+
+			let randomNumber = 0  //initialized but not permanently so my program can keep reassigning it.
+			while (randomNumber < 0.1 ) {
+			    //body of logic to keep iterating and var scoped here
+			    randomNumber = Math.random()
+			}
+
+			console.log(`this random number: ${randomNumber}is the first one that breaks the loop because it does not meet the condition to keep the loop going`)
+			        */
+
+
+
+					/*  2
+
+			    // Now that we know what loops are, some practical examples of loop application is looping through an array and doing something with it. Developers thought hard and long about how to loop over arrays taking into consideration the three requirements. So they came up with using the index of arrays bacause it matches exactly as the normal loop variable which starts at 0 and because the index is needed to to access each value stored in the array. Now arrays can be as many as thousands and we cannot now how many times to loop, but the array property length counts number of elements in an array starting from zero, so since the difference btw an array's indexes and an array's length is that the indexes is just 1 short of length, the max index is then determined using the length. We are the ones seeing the value but program sees the container so we are looping through the containers. Also, we culd have set off our loop based on any condition we can think of, but because the loop must be exactly the number of items in the array, so array index logic was used. Note that we can actually start the loop by initializing the loop var to 1 and use lenth of array without subtracting but we will run into trouble because if our intent was to loop through the array and access every element contained, we will miss the first element because the first element is at index 0 and array[i] for each i will miss the first element. So we always start at 0 and end at length - 1. Also note that x
+
+			    const todoList = [
+			        'make dinner',
+			        'wash dishes',
+			        'watch youtube'
+			    ];
+
+			    for (let i = 0; i <= todoList.length-1; i++) {
+			        //or for (let i = 0; i < todoList.length; i++) {
+			        console.log(todoList[i]);
+			    }
+
+			    //we will learn a technique called the accumulator pattern that we can combine with loops., where we set a variable to store the result and we loop through the array and add to the accumulator variabe.
+
+			    const nums = [1,2,3]
+			    let accumulator = 0;
+
+			    for(let i = 0; i < nums.length; i++) {
+			                //using < means the comparison will always stop at 1 short of the length of the array
+			        accumulator += nums[i]
+			    }
+			    console.log(accumulator);
+
+			//using the accumulator pattern, write a program where we loop through the array and in the end generate another array where the initial array values are doubled
+
+			const nums2 = [1,2,3];
+
+			let accumulator2 = [];
+
+			for (let i = 0; i < nums2.length; i++) {
+				accumulator2.push(nums2[i] * 2)
+			}
+			console.log(accumulator2)
+
+			//we have shown we can use different kinds of values as our accumulator. We can also use empty strings and even object if we want
+
+
+			//Write a function that takes an array and logs the last element of the array and then swaps the first and last element of the array
+
+			function lastElement(array) {
+				//access using the last index of an array
+				console.log(array[array.length - 1])
+				const lastElement = array[array.length - 1];
+				const firstElement = array[0];
+				array[0] = lastElement;
+				array[array.length - 1] = firstElement;
+				console.log(array);
+
+			}
+
+			lastElement([2,3,4,5,20]);
+
+			//write a function that takes an array of numbers and returns how many numbers in the array are > 0
+
+			function countPositive(nums) {
+				let count  = 0;
+				for (let i = 0; i < nums.length; i++) {
+					if (nums[i] > 0) {
+						count++;
+					}
+				}
+				return count;
+			}
+
+			console.log(countPositive([1,2,3,4,5,6,7,8,9,0,-1,-2,-3,-4,-5,-6,-7,-8,-9]))
+
+			console.log(Math.min(1,2,3,4,5,6,7,8,9,0))
+			//write a function that takes an array and returns the min and max number in the array. This is a bit tricky because we have to initialize the min and max to the 'first element of the array' and then loop through the array and compare each element to the min and max and update the min and max accordingly. It is a common question and this is a common solution to it so it is good to know.
+
+			function findMinMax(array) {
+				//start both min and max at the first element of the array
+				let min = array[0];
+				let max = array[0];
+
+				for (let i = 0; i < array.length; i++) {
+					//if current value of array is less than min, update min
+					if (array[i] < min) {
+						min = array[i];
+					}
+
+					if (array[i] > max) {
+					//if current value of array is greater than max, update max
+						max =  array[i]
+					}
+				}
+				
+				return {min: min, max: max}  //or return [min, max]. We can only return one value so we can return an object or an array
+			}
+
+			console.log(findMinMax([1,2,3,4,5,6,7,8,9,0]));
+
+			//write an function that takes an array of words and returns the number of times each word appears in the array. We will use an object as our accumulator. 
+
+			function countWords(words) {
+				const wordObject = {};				
+
+				for (let i = 0; i < words.length; i++) {
+					//as we set off the loop engine, we want the following to be executed for every current-value. we first check if the current word is already in the object as a property and make some assumptions
+					if (wordObject[words[i]]) {
+						wordObject[words[i]] += 1
+					} else {
+						wordObject[words[i]] = 1
+					}
+				}
+				return wordObject
+			}
+
+			console.log(countWords(['solomon', 'solomon', 'solomon', 'emmanuel', 'chukwuma', 'chukwuma', 'emeka']))
+
+			//write an function that takes an array of words and returns the number of times each word appears in the array. We will use an object as our accumulator. 
+
+			//function countWords1(words) {
+			//	const wordsObject = {};
+				
+
+			//	for (let i = 0; i < words.length; i++) {
+			//		//as we set off the loop engine, we want the following	
+			//		if (wordsObject[words[i]] === undefined) {
+			//			wordsObject[words[i]] = 1
+			//		} else {
+			//			wordsObject[words[i]] += 1
+			//		}
+
+			//	}
+			//	return wordsObject	
+			//}
+
+			//console.log(countWords1(['solomon', 'solomon', 'solomon', 'emmanuel', 'chukwuma', 'chukwuma', 'emeka']))
+
+			*/
+
+			//We will learn some more details about arrays.
+
+			//1. Arrays are references or are reference type data meaning that the variable holding an array does not actually contain the actual array object but a reference to that array somewhere in memory. This means that if we assign a variable holding an array to a new variable, both will point to the same array and any changes to one affect the other. To combat this, the slice() method was created to make a copy of an array.
+			
+			const array1 = [1, 2, 3, 4];
+			const array2 = array1;
+			console.log(array1, array2)
+			array2.push(5)
+			console.log(array1, array2)
+
+			//2. Arrays can also be destructured similar to how we are able to do for objects.
+			const object1 = {a: "apple", b: 'ball', c: "cat" , d: "dog"}
+			const {a} = object1
+			//const {a: app} = object1
+			//console.log(app)
+			console.log(a)
+
+			//suppose we have the following array. If we want first data, we use the index
+			const array3 = [4, 3, 2, 1,];
+			console.log(array3[0])
+			//or we destructure
+			const [four] = [4, 3, 2, 1,];
+			console.log(four); //this is an easier way to get values out of an array. Notice how we used a variable to hold the value
+
+			//more details about loops. Yes loop lets us run a  block of code repeatedly without exiting the loop early or skipping an iteration until the loop condition becomes false. There are two other operations that are quite common around loops. (1) We want to exit the loop early "break". (2) We want to skip the rest of (or if we want) the current iteration of a loop "continue". Of the two, break is straight forward. The "continue" statement is however applicable in many scenarios. However, often as we loop through an array we may not want to execute a code on every loop over the array items and this may beduring a loop there are two more operations that we , we want to exit a loop early or skipping over a certain iteration of the loop if an event occurs. (1 iteration) The keywords for them are: break and continue and both are implemented using an if statement. if we get to the point of where i === the continue condition, js will go back up and set i to the next value for that iteration number. Another name for continue is 'jump to next iteration' but remember every iteration is based on a current state of the iterator variable. When we "continue" a loop we are aying to js,'take not of this but pretend like you didnt see this item'. We can also write a code around the item to be continued like, if the seen item is up to 5 stop continuing
+
+			//Let us see continue and break in action in a for loop. 
+
+			for (let i = 1; i <= 10; i++) {
+				if (i % 3 === 0) {
+					continue;
+				}
+				console.log(i);
+				if (i === 8) {
+					break;
+				}
+				
+			}
+
+			//Let us now use continue in a while loop
+
+			let i = 1;
+			while (i <= 10) {
+				if (i % 3 === 0) {
+					i++;
+					continue; //no code beyond this line will execute for this iteration so to avoid an infinite loop of the same current i, we must increment i before using continue in a while loop. Take note.
+				}
+				console.log(i);
+				i++;
+			}
+
+			// Next to use loops with functions. Suppose we want a function that doubles an array element's current value. The only thing to note is that in a function we can break out of a loop using a return statement. As functions are a tool we use in different scenarios, if we break and then return, it would be an overkill, so instead we return
+
+			function doubleArray(nums) {
+				let accum = [];
+
+				for (let i = 0; i < nums.length; i++) {
+					if (nums[i] === 0) {
+					return accum; //as we need the accum at this breakpoint
+				}
+					accum.push(nums[i] * 2);
+				}
+				return accum;
+			}
+
+			console.log(doubleArray([2,4,6, 0, 8]));
+
+			//as we can see, break and return statement (for functions) amongst other things can help us to break out of doing something at the first occurrence of that thing.
+
+			//....................................
+			const someStrings = ['jasmine', 'search', 'uchenna', 'baby', 'search', 'people', 'emmanuel'];
+
+			let foundIndex = -1;//assume we havent | do not have an index
+			for (let i = 0; i < someStrings.length; i++) {
+				if (someStrings[i] === 'search') {
+					foundIndex = i;
+					break;
+				} 	
+			}
+			console.log(foundIndex); //index or -1
+
+			// convert the foudIndex code to a function that enables you find the index of an element within an array.
+
+			function findIndex(array, value) {
+				for (let i = 0; i < array.length; i++) {
+					if (array[i] === value) {
+						return i;
+					} 	
+				}
+				//after all the iteration and i is not returned
+				return -1
+			}
+
+			//write a function that takes an array of strings and returns an array where specified item is not part of the return accumulator. splice can be used but continue is safer. splice modifies the array so may not be great for a large array and when looping and we splice, i must be manually decremented to account for the missing container in the array. Use splice for small array and when we do not need the other values in the array for much, use continue for large arrays and when we may need to use other array values.
+
+				/*
+			function removeItem (array, item) {
+				let accum = [];
+				for (let i = 0; i < someStrings.length; i++) {
+					if (array[i] === item) {
+						continue;
+					}
+					accum.push(array[i]);
+				}
+				return accum;
+			}
+
+			console.log(removeItem(someStrings, 'search'));
+			*/
+
+			//what if we want the array to remove only the first 2 occurrences of an item from the array---if we can keep track of the number of occurence, we can use it set up a condition with the limit of occurence requested
+			/*
+			How would i write my algorithm if i do this practically. Suppose i item is red balls and i only want to remove 2 from a box with a mixture of colored balls.
+			steps:
+			1. In the real world i would pick a ball 1 check it, if red i drop it back (continue) but make a count of it, if others, i take it and add to the new empty box (array).
+			2. The objective is to not include 2 occuring items in my loop where two is the limit. i can make a rule to say
+			adds additional attribute to the seen item and that way differentiate it from the other seen items. Below occurenceCounter is like an additioal attribute of item and i have used it as a differentiator ie, if you are seen, I count you, but before i decide if to skip you or take you with the rest, i will check if my counted is less or exactly as much as i need, and if true you are skipped. 
+
+			Also, because continue is something that you want to check as a continuos process, the condition to determine whether to continue must also be a continuing condition and not a definite condition. We cannot say if occurCounter = limit continue. It fails because the other occurCounter values before the limit were not continued so we will only have one continued item. I want to continue/ignore for every situation the counted item is not above the limit and that is <= situation.  If an operation i perform generates a value that is generic, i can perform another operation and for each time i perform the generic data and use the second operation as some sort of delimiter to determine how much of the generic i get/take 
+
+			using .reverse(), remove last 2 items (any we choose) and display the array with last two item namws out
+			*/
+
+			function removeItem (array, item, limit) {
+				array.reverse()  //original array will get modified
+				let accum = [];
+				let occurrCounter = 0;
+				for (let i = 0; i < someStrings.length; i++) {
+					if (array[i] === item) {
+						occurrCounter++;//add one to a counter
+						if (occurrCounter <= limit){
+							continue;//then we check if tally matches limit
+						}
+						
+					}
+					accum.push(array[i]);
+				}
+				return accum.reverse();
+			}
+
+			const anyArray = [
+				'rice', 'garri', 'beans', 'rice', 'tomato', 'rice', 'moi moi'
+			];
+
+			console.log(removeItem(anyArray, 'rice', 2))
+			
+			console.log(anyArray)  //the function has modified the array. Can make a slice of the original array and then reverse that thereby leaving the original array untouched.
+
+
+			//FizzBuzz Problem
+			for (let i = 1; i <= 20; i++) {
+				if ((i % 3 === 0) && (i % 5 === 0)) {
+					console.log("FizzBuzz")
+				} else if (i % 5 === 0) {
+					console.log("Buzz")
+				} else if (i % 3 === 0) {
+					console.log("Fizz")
+				} else {
+					console.log(i)
+				}
+			}
+
+
+			//filter an array to get only one occurence of each word. Try to implement it using the findIndex() function we created above
+
+			const anyArray2 = [
+				'rice', 'garri', 'beans', 'rice', 'tomato', 'rice', 'moi moi','rice', 'garri', 'beans', 'rice', 'tomato', 'rice', 'moi moi','rice', 'garri', 'beans', 'rice', 'tomato', 'rice', 'moi moi','rice', 'garri', 'beans', 'rice', 'tomato', 'rice', 'moi moi','rice', 'garri', 'beans', 'rice', 'tomato', 'rice', 'moi moi','rice', 'garri','rice', 'garri', 'beans', 'rice', 'tomato', 'rice', 'moi moi','rice', 'garri','rice', 'garri', 'beans', 'rice', 'tomato', 'rice', 'moi moi','rice', 'garri', 'beans', 'rice', 'tomato', 'rice', 'moi moi','rice', 'garri', 'beans', 'rice', 'tomato', 'rice', 'moi moi','rice', 'garri', 'beans', 'rice', 'tomato', 'rice', 'moi moi','rice', 'garri', 'beans', 'rice', 'tomato', 'rice', 'moi moi','rice', 'garri','rice', 'garri', 'beans', 'rice', 'tomato', 'rice', 'moi moi','rice', 'garri'
+			];
+
+			function uniqueArray (array) {
+				const uniqueArray = []
+
+				for (let i = 0; i < array.length; i++) {
+					//we already have a function we defined above
+					if (findIndex(uniqueArray, array[i]) === -1) {
+						uniqueArray.push(array[i])
+						continue
+					}
+				}
+				return uniqueArray
+			}
+
+			console.log(uniqueArray(anyArray2))
+			//Note that any scoped logic is like a trap, whatever it doesnot catch is what spills over to the rest.
+		</script>
+	</body>
+</html>

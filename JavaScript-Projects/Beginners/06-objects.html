@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Objects</title>
+  </head>
+  <body>
+    <!-- In programming, it is not all the time that we save and/or only need to use single values in a variable. Many times, like in real world scenarios, we need to store, make reference to, update, delete, check, search in multiple values at the same time. Luckily, programming languages have several ways of grouping more than one value within the same container-like struture, each with its own unique advantages and properties. An object is one of such structure. It allows us group values together. In most cases, objects are used to group related values of an object of interest. For example, a game can be developed to collect during runtime certain information, e.g score, time, number of lives etc. Per runtime, a new object can be created to update these properties and at end of game, display the values of each property. There can also be methods to display these or any property value at any given time etc. 
+     
+     It is a good idea to think of a collection item like array, objects as a sub-global variable name space. ie, a container within a global container in which whereas to access values within a global container like the file directly we just name the variable and use them but for array (due to it's design) we access values (cos it only allows us to save values directly into indexes of the container, it does not require us to think of a variable name/does not create properties) to access any value from outside the container, ie from the global space, we need to reference the container's index value where the value we want is. 
+     
+     Same goes for objects, because by design it insists that to make a storage space available for our value, we first rename the storage space (give it a variable name of choice-the property) and then associate a value to it. So we must therefore only access any value from the global space by referencing the container name and the property name. In the same vein, it is also how we access the methods associated with any object. Summarily, objects are useful for grouping different sub-data for the an instance of data and it can even be nested within another data if its data forks out like that. Or we can say that these properties (which in the real sense are actually variables) exist in the global space via their parent instance so to speak. and we can treat it how we treat variables like re-assignment and all. But objects have special methods (prototype) that lets us deal with its contents as a group which we shall see later on. Because objects allows us so much freedom, we can also create new properties on the fly and assign values. This is very useful in the real world. So we are not constrained. Think of it as we thought about a sub-global space. The object instance has given us access to the object, we can just go in and create a new property and add values. In other words, we can write new property-value pairs into the object both from within the object and from outside the object. It is like telling the object, hey, make a storage space named as propertya and give it this value. I will like to use it later and you are the closest storage container. 
+     
+     Finally, same way we can update single variables, we can also update our object, by that I mean we can access any property within an object an update its value as our program runs. We shall see this in effect in our rock-paper-scissors game.
+     -->
+
+    <script>
+      /*
+
+            // Notice I used two styles of writing methods to objects.. Access properties using fot notation.
+
+            const product = {name: "socks", price: 1090, callPrice() {
+                console.log(this.price)
+            }, callName: function() {
+                console.log(this.name)
+            }
+        }
+
+            product.callPrice()
+            product.callName()
+
+            console.log(typeof product)
+        // Also notice that an object is also another type of value as you can see. Nothing stops us from creating the object without assigning it to a variable but once we do, it no longer becomes a floating garbage but assigned to an actual storage in the memory thereby making it a value. but the variable, in typical variable fashion allows us to add meaning to the value being stored.
+
+        /*advantages:
+         1- lets us organize our code. No need for creating so many varibles all over the place.
+         2- lets us display/use multiple values at once/together. e.g
+
+         console.log(product)
+         */
+
+      //More about objects:
+      /*
+          1. Object keys also known as properties can be valid identifiers and non-valid identifiers (aka string identifiers) and such must be wrapped around quotes and must be accessed using square brackets. Good thing is that JS identifiers and string identiders are seen as strings under the object hood so square brackets can also be used to access both, by passing both as strings to the square brackets
+
+          Note: It is encouraged to write an object's method using the shorthand format as it is easier to read.
+            */
+      const product2 = {
+        name: "shirt",
+        "delivery-time": "1 day",
+        rating: {
+          stars: 4.5,
+          count: 87,
+        },
+        functionName: function thisNameWillNotBeUsed() {
+          console.log(this.name); // Use if you must but the other ways below is cleaner
+        },
+        deliveryTime() {
+          console.log(this["delivery-time"]); //Will auto create property of same function name. It is called shorthand method and recommended.
+        },
+        displayRating: () => {
+          console.log(this.rating); // arrow functions work but mind the 'this'
+        },
+        displayStars: function () {
+          console.log(this.rating.stars); //ok
+        },
+        function() {
+          console.log(this.rating.count); //Discouraged
+        },
+      };
+
+      //   console.log(product2.name);
+      //   console.log(product2["delivery-time"]);
+      //   console.log(product2["name"]);
+      product2.functionName();
+      product2.deliveryTime();
+      product2.displayRating(); //undefined because arrow functions do not have a 'this' context, but global.
+      product2.displayStars();
+      product2.function();
+
+      /*
+          2. Seeing that objects are themselves values, we can as well save any kind of values within it, even other objects. This is called nesting. As above, seeing that stars (rating value), and count of ratings are too closely related or an offshoot of ratings, we can group it together in a nested object. To access nested values, we just use the dot notation or bracket notation, multiple times.
+           */
+
+      /*
+           3. In writing a method for an object, the method is called using the property name and parentheses and not as we do for function in the global scope where we use the function name. Also, we see that a function is also another type of value in JS and is useful for several reasons, one being that it allows us to give objects functionalities, which is very important. console.log(): console is an object, log is the property name of a function inside the object and references the function and the parentheses calls the function. Without the parentheses, we are only making reference to the function (bringing it to scope). Math.floor(), Math.random() etc are all examples of objects and thier methods.
+           
+           */
+
+      /*
+           4. Built-In objects: We have several built in objects that are already built into the language JS. we have seen Math, console, but we will look at another two which is very important. JSON and localStorage. We will see how we can use these two objects to improve our rock, paper, scissors game.
+           
+           i. JSON: It is a built in object that helps us work with JSON. Easiest way to understand JSON is to think of it as a special syntax for writing objects that is cross-lanuage. In a JSON, all properties and values must be wrapped with double quotes, no methods allowed and no trailing comma. So JSON can be thought of as JS objects but with less features so to speak. For this reason of cross-language understandability, JSON format is used to store data to be used between computers/platforms. JSON like we said is an object so it has its own properties and methods. One of its methods lets us convert JS objects to JSON, and another to convert from a JSON string to a JS object. Note, whenever we convert a JS object to JSON, the output is a string, ie it converts everything to a string. Any language or platform that wants to use the value must parse it. Parsing will pass it into the current platforms useful format
+           
+           */
+
+      //let us convert product2 into a JSON format and vice versa
+      //How it works, the variable is wrapped with this method. It gets evaluated ie the value is what is accessed and converted to string. At this point, the program is not seeing a variable but a long structure made up of only strings. When parsed, program sees only this structure, and evaluates it again. It does not revert to the provious variable. But we can use same variable name to save it. But in this case, if we want to still use the methods in the provious variable, we may lose it./naming conflict too.
+
+      //console.log(JSON.stringify(product2)) //Notice that all the methods i wrote are not in this new JSONed product2
+
+      const jsonString = JSON.stringify(product2);
+      const jsonParsed = JSON.parse(jsonString);
+
+      console.log(jsonString);
+      console.log(jsonParsed);
+
+      /*
+      ii. localStorage: This is the second inbuilt object we are interested in. It is used to save values more permanently. in our programs so far, we've been saving our values in variables but variables are temporary. They only exist on the current page. If we refresh the page/file everything resets and all the variables are deleted. Local store does not get deleted when we refresh the page. We will employ local storage in  our rock, paper scissors project. Just like JSON, localStorage has a method setItem() this takes two string arguments,access by name or key and the value :string being stored
+      setItem("key:nameToAccessBy", value:'stringBeingStored') 
+
+      Because memory is better managed using texts/strings, to store data in memory, it must be as strings or must be converted to strings first. This is where JSON is important. our data can be stringified and then saved in localStorage
+
+      to get the data from memory, as a single value in a variable, or collection (JSON) in a variable, we just 
+
+      localStorage.getItem('nameToAccessBy') or console.log(localStorage.getItem('nameToAccessBy')) but it is still a string so to use it again in our program, we also have to pass it. In the real world, so much data are strigified, saved locally and transfered to be used by another system.
+
+      One more thing, it is always a good idea to getItem towards the begining of the program so as to access any value in local storage for us later in the program, it does to hoist to the top of the program.
+      */
+
+      localStorage.setItem("name", "Solomon");
+      console.log(localStorage.getItem("name"));
+
+      const solomon = {};
+      solomon.color = "black";
+      solomon.height = 1.8;
+      console.log(solomon);
+
+      localStorage.setItem("solomon", JSON.stringify(solomon));
+      console.log(localStorage.getItem("solomon")); //eval to a string
+      console.log(JSON.parse(localStorage.getItem("solomon"))); //eval to JS onject
+
+      //Other things we want to learn about objects concept in JS is the value null. We use null when we intentionally want a value to be empty. Both null and undefined are falsy but null differs because it explicitly means empty, but in most cases they both work the same. e.g, chek out the function. Although null typeof is showing object but this is a bug
+
+      function func(parameter = "default") {
+        console.log(parameter);
+      }
+
+      func(); //uses default value
+      func(undefined); //when explicitly stated it is a value that stands in before real values is yet to be initialized, or when not explicit JS uses it to indicate that value is absent but not its intent is not to flat out take no value.
+      func(null); //parameter given the null value is with an intent that that storage is always empty/absense of value so no default values taken.
+
+      //Another feature of objects we want to learn is Auto Boxing: We are learning this to show that objects have a far reaching influence in the whole of JS as a language. Auto Boxing is a mechanism in JS where promitive values are auto wrapped in a corresponding object wrapper when we try to access properties or methods on them. Think of it like a wrapper that takes that primitive on one hand, looks at it and returns-note the word returns new value of whatever it has done and the wrapper is discarded immediately and the original primitive (except null and undefined) is left unaffected.
+
+      const string1 = "hello";
+      console.log(string1.toUpperCase());
+
+      //Objects are reference type variables not primitives meaning that a variable does not actually store an object at that variable location but a reference to another location where the actual object is stored. This is similar to how we have shortcuts icons on our compuer that points to where the actual program is. So always, in our min'd eye, we should assume that any object we write to a variable, immediately program is creating that object somewhere in memory and assigning some reference to the variable but still renders the reference for our view. This property of objects makes it possible to change the value inside of a content without even if it ia a initialized as const. Also, we cannot compare objects directly. Because if we assign two variables with exacly the same object content together, since their references differ, the will not result in an equal value as output. This is true because we must assign the objects to a vairable in order to chack it in memory for equality. Referencing helps make our code efficient. Objects can be very large and if we are to copy such large objects everytime, we use a lot more resources.
+
+      //shortcuts 1: Destructuring-because objects are a very huge part of JS and programming in general, and because in many projects, we will have objects with many properties and entries, often we will need to use values stored in it. What it does is it makes copies of the values of the properties into variables in the global space if the values are primitives but copies of references if the values are reference types. And the syntax to do it can be thought of as a sort of if statemt: if const object1 = {a:1, b:2} then const {a, b} = object1 or const {a:num1, b:num2} = object1. The curly bracket is important because it is what differentiates it from a normal variable assignment. Here it is a variable assignement in a sub-global space and that space is an object and obviosuly you are already targeting a value so that is why most times the need to match property name already, but if you do not want to match the property name you see how we re-assigned the matching property name to suit what we want it for. Also note that methods are also destructured and a copy of that method is assigned. We can then call it as other functions in the global space and performs what it is meant to perform. But mind you, if the function references this, then in the global space, this will not be available.
+
+      const person1 = {
+        name: "Emeka",
+        age: 37,
+        nationality: "Nigerian",
+        getName: function () {
+          console.log(`my name is ${this.name}.`);
+        },
+      };
+
+      person1.getName();
+      const { name, getName } = person1;
+      console.log(name);
+      getName();
+
+      //Shortcut 2: shorthand property/method: This deals with creating an object with variables already existing in the global space. If the property name will be the same as the variable name in the global space, we just write only the property name and move on. JS automatically assigns the variable to the property even if we do not see it. This can be beneficial if we are too far into our code and we remember we have several variables already created and we want to make an object out of some of them, we just name them in the object and thier values are auto assigned. But be careful not to erase those varibles in the global space though. The shorthand method is why we just write a functionname() {}, no property assigned. JS auto assigns the function name as the property. I have demonstrated this already towards the top.
+
+      const fullName = "Solomon Ojiako";
+      const religion = "Christianity";
+
+      const person2 = { fullName, religion };
+      console.log(person2.fullName);
+
+      /*
+      //Lesson points learned in Objects so far:
+      * Objects: help us group related values together
+      * We used object to add a score to our game- rock, paper, scissors
+      * We learnt about built in objects like JSON and localStorage and used it in our game
+      * More about objects (null, auto-boxing, references)
+      * Shortcuts around objects in general (destructuring, shrthand property, shorthand method)
+      */
+
+      const prod1 = { name: "shirt", price: 1500 };
+      const prod2 = { name: "pants", price: 1000 };
+
+      function comparePrice(producta, productb) {
+        if (producta.price > productb.price) {
+          console.log(`The ${producta.name} is more expensive`);
+        } else if (productb.price > producta.price) {
+          console.log(`The ${productb.name} is more expensive`);
+        }
+      }
+
+      comparePrice(prod2, prod1);
+
+      function isSameProduct(producta, productb) {
+        //when working with operators, have at the back of mind that brackets can be handy.
+        if (
+          (producta.name && producta.price) ===
+          (productb.name && productb.price)
+        ) {
+          console.log("Both products are the same");
+        } else {
+          console.log("Both products are not the same");
+        }
+      }
+
+      isSameProduct(prod2, prod2);
+
+      //finally, JS data types names are stored in the program as a string. This is very important because it allows us to then be able to ask the program if the typeof value is a member of that datatype or not, and this can help us write to neat logic. So even though 'number' is a string, the context and how it is used tells JS that you are checking if a value is amoung its data types.
+
+      const num2 = 50;
+      const var1 = "hello";
+
+      console.log(typeof num2); // 'number'
+      console.log(typeof var1); // 'string'
+
+      if (typeof num2 === "number") {
+        console.log(`this is a string`);
+      } else {
+        console.log(`this is not a string`);
+      }
+
+      console.log(typeof "number"); //string
+    </script>
+  </body>
+</html>

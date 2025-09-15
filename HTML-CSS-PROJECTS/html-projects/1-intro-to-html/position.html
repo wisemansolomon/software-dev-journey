@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Position Practice</title>
+</head>
+<body style="
+  height: 3000px;
+  padding-top: 60px;
+  padding-left: 220px;
+  ">
+
+  <!-- To practice the position property, we want to make the body scrollable. To do that we styled the body with a height of 3000px. This makes the height of the page greater than the viewport. This will allow us see the styling we want to practice the position property. One thing to notice is that when we set a position fixed for an element, if it is a block level element, it will collapse to only wrap arround its content like an inline element, unless ofcourse the width of the element is set. But if set, the element, ie div will be transparent but the content will be visible. Perhaps this is due to the fact that it is on a different stack and allows the developer to see what is behind this new stack. But a background color helps to give it its distinct layout color. Also setting a value of 0 means that is space between the fixed element and the window's top, right, and left. Now for the bottom, if we want the bottom to resize with the window, we can use bottom property but if we want a fixed height or width, we use the height or width property. (we can set a top, left, bottom of 0 and width of 20px to set a vertical sidebar trick)  -->
+
+
+  <div style="
+    background-color: rgb(153, 146, 146);
+    color: white;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 50px;
+    padding-right: 30px;
+    z-index: 100;
+  ">
+    <div style="display: flex;">
+      <div style="width: 50px;">
+        <img style="width: 50px; border-radius: 50%; aspect-ratio: 1/1;" src="random-images/bird-1.jpg" alt="">
+      </div>
+      <div style="margin-left: 5px;"><p>Oliver Bird Fixed Header</p></div>
+    </div>
+    <div>
+      <button>Add Friend</button>
+      <button>Message</button>
+    </div>
+  </div>
+
+  <div style="
+    background-color: rgb(64, 63, 63);
+    color: white;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top:55px ;
+    width: 72px;
+    padding-left: 10px;
+    ">
+    sidebar
+    <div style="width: 50px;"><img style="width: 50px; border-radius: 50%; aspect-ratio: 1/1;" src="random-images/bird-1.jpg" alt=""></div>
+
+    <div style="width: 50px;"><img style="width: 50px; border-radius: 50%; aspect-ratio: 1/1;" src="random-images/bird-1.jpg" alt=""></div>
+  </div>
+  
+  <div style="
+    background-color: gray;
+    color: white;
+    position: fixed;
+    left: 72px;
+    bottom: 0;
+    top:55px ;
+    width: 150px;
+    ">
+    double sidebar
+    <div style="position: absolute; background-color: red; top: 0; right: 3px;">
+      X
+    </div>
+  </div>
+
+
+
+  <div style="
+    background-color: lightblue;
+    height: 200px;
+    width: 200px;
+    position:relative ;
+    top: 0px;
+    right: 0px;
+    ">
+    div 1
+    <div style="position: absolute; background-color: red; bottom: 5px; right: 3px;">5:00</div>
+  </div>
+
+  <div style="
+    position: relative;
+    background-color: green;
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+    ">
+      <img style="max-width: 100%; height: auto; width: 100%; height: 100%; object-fit: cover;" src="random-images/family-1.webp" alt="">
+      <div style="position: absolute;top: 5px;right: 5px; z-index: 100; background-color: black;color: white; padding: 3px 5px; font-family: Arial, Helvetica, sans-serif; font-size: 0.7rem;">20% OFF</div>
+      <div style="position:absolute; left: 0;right:0; bottom:0;top: 200px; z-index: 101; background-color:rgba(255, 255, 255, 0.6) ;;"><div style="display: flex; align-items: center;width: 100%; height: 100%; justify-content: center;"><button style="padding: 5px 8px; border-radius: 0; border: 1px solid;">Add to Cart</button></div></div>
+
+      
+  </div>
+
+  <div>
+        <button>
+          <img src="random-images/animal-1.webp" alt="">
+          <div>Hello World</div>
+          <div>Somebody</div>
+        </button>
+      </div>
+
+</body>
+</html>

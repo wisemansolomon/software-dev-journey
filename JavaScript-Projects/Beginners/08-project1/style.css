@@ -1,0 +1,42 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.cart-add {
+	background-color: rgb(255, 216, 20);
+	margin-bottom: 20px;
+	padding: 8px 50px;
+	font-size: 14px;
+	border-radius: 30px;
+	border: none;
+}
+
+.uber-btn {
+	margin-left: 15px;
+	padding: 8px 15px;
+	border: none;
+	border-radius: 5px;
+	margin-bottom: 12px;
+}
+
+.request-btn {
+	color: white;
+	background-color: black;
+}
+
+.schedule-btn {
+	background-color: rgb(230, 230, 230);
+}
+
+.btn {
+	background-color: rgb(230, 230, 230);
+	padding: 8px 15px;
+	border: none;
+	border-radius: 5px;
+	margin-bottom: 20px;
+}
+
+.game-button1 {
+	color: white;
+	background-color: black;
+}

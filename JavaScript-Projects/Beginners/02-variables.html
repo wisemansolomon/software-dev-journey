@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Variable Exercises</title>
+  </head>
+  <body>
+    <!-- This mini project assumes we have a commerce app where we can add an item to cart and then increase the item's count by 2 or 3, show the cart quantity and reset the cart
+     Notice that the idea is about passing information in some way and we may decide to display it or not. Information in programming is data and data or value is programmmed using a variable 
+     and as we know, variables lets us save a value that we intend to make us of later in our program, whether in its original state or modified-->
+    <button
+      onclick="
+        console.log(`Cart Quantity: ${cartQuantity}`)
+    "
+    >
+      Show Quantity
+    </button>
+    <!-- Add to cart impplies adding one item to the cart so we increase the cart quantity by 1 -->
+    <button
+      onclick="
+    //   cartQuantity = cartQuantity + 1  // add 1 to the var and assign it to the same variable, essentially re-assigning the original variable.
+        updateCartQuantity(1)
+    
+    "
+    >
+      Add to Cart
+    </button>
+    <button
+      onclick="
+        updateCartQuantity(2)
+    
+    "
+    >
+      +2
+    </button>
+    <button
+      onclick="
+        updateCartQuantity(3)
+    
+    "
+    >
+      +3
+    </button>
+    <button
+      onclick="
+        updateCartQuantity(4)
+    
+    "
+    >
+      +4
+    </button>
+    <button
+      onclick="
+
+        updateCartQuantity(5)
+    
+    "
+    >
+      +5
+    </button>
+    <button
+      onclick="
+        console.log(cartQuantity)
+        // It is important to note that in some contexts like arithmetic operations, logical op etc, using a variable is like using a convenient way of
+        // using a value (as any value (number) and subtracting - 1 ie we could have used another number instead but we chose to use the value of the variable. )
+        //This is because the incrementing and decrementing follows a process. It calls the variable, does something and assigns the new value to the same variable
+        // but other operations does not do this. Think why, if we have a variable and we say variable + 2, if we do not use same or another variable to store that new
+        //value, the original value of that variable is the same. Therefore these operations just use these variables to get a new value/state but does not re-assign to that variable.
+        //so below, if we want to first check that the cartQuantity state is first 0 before deciding to increment/decrement it, we first evaluate a value that tests if we subtract 1 from it,
+        // will less or equal zero and that value happens to be the value of the variable which is convenient right. So, we just smartly found a way to set up our if statement and efficiently.
+        //The reason being we are evaluating an expression with a variable and another value, with the intent of using its outcome as a driver but not change the state of the actual variable in memory. Only possible with re-assignment.
+        if (cartQuantity - 1 < 0) {
+            alert(`Cart Quantity does not have enough items: ${cartQuantity}`)
+        } else {
+            updateCartQuantity(-1)
+        }
+    "
+    >
+      Remove from Cart
+    </button>
+    <button
+      onclick="
+        updateCartQuantity(-2)
+    
+    "
+    >
+      -2
+    </button>
+    <button
+      onclick="
+        updateCartQuantity(-3)
+  
+    
+    "
+    >
+      -3
+    </button>
+    <button
+      onclick="
+        cartQuantity = 0
+        console.log(`Cart Quantity was reset.`)
+        console.log(`Cart Quantity: ${cartQuantity}`)
+    
+    "
+    >
+      Reset Cart
+    </button>
+
+    <script>
+      //1. we name variables with relatable names to what they will represent or contain. We set the variable initial value and use onclick attributes to program changing the variable values and displayin it to a console for now.
+      //2. Rule of thumb: Always declare variable using const, but if we know we will be changing the variable, we can then use let.
+      //3. we use typeof to check the type of value/data type we are dealig with.
+      let cartQuantity = 0;
+
+      function updateCartQuantity(value) {
+        cartQuantity += value //value can then be -ve or +ve. (-=3 === += -3)
+        console.log(`Cart Quantity: ${cartQuantity}`)
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .subscribe-btn {
+      background-color: rgb(200, 00, 00);
+      color: rgb(255, 255, 255);
+      border: none;
+      /*width: 100px;*/
+      /*height: 38px;*/
+      margin-right: 5px;
+      border-radius: 2px;
+      cursor: pointer;
+      padding: 10px 16px;
+      transition: opacity 0.15s; /*tstn takes the property we want to transition (already applied) and durationn to effect it. applied because from base to opacity was very smooth(slow & progressively) and not instantaneously.*/
+      vertical-align: top;
+    }
+
+    /* Adding a pseudo class which is basically extra styles applied when we interact with the element in a specific way like hover, active. Once, we type the classname and colon, list of pseudo classes appears. Some take double colon while some take single colon. Notice the transition is not applied here because we want transition to base and back to base to be smooth, not just out */
+    .subscribe-btn:hover {
+      opacity: 0.6 ;
+    }
+
+    .subscribe-btn:active {
+      opacity: 0.5;
+    }
+
+    .join-btn {
+      background-color: rgb(255, 255, 255);
+      color: rgb(6, 95, 212);
+      border-color: rgb(6, 95, 212);
+      border-width: 1px;
+      border-style: solid;
+      /*height: 38px;*/
+      /*width: 74px;*/
+      padding: 9px 15px; /*1px 15px plus 1px of border width makes it 10px 16px*/
+      margin-right: 5px;
+      cursor: pointer;
+      transition: background-color 0.15s, color 0.15s; /**/
+    }
+
+    /* we inverted the color when we hover over */
+    .join-btn:hover {
+      background-color: rgb(6, 95, 212);
+      color: rgb(255, 255, 255);
+    }
+
+    /* we also notice that youtube join botton whhen clicked faded out a bit */
+    .join-btn:active {
+      opacity: 0.7;
+    }
+
+    /* The next css styling we shall learn is adding shadows. To add shadow we use the property "box-shadow" which takes 4 values, horizontal position, vertical position, blur and color - color measured in rgba*/
+    .tweet-btn {
+      background-color: rgb(29, 155, 240);
+      color: white;
+      font-weight: bold;
+      border: none;
+      /*height: 38px;*/
+      /*width: 75px;*/
+      border-radius: 18px;
+      padding: 10px 16px;
+      cursor: pointer;
+      transition: box-shadow 0.17s;
+      
+    }
+
+    .tweet-btn:hover {
+      box-shadow: 5px 5px 5px rgba(2, 65, 107, 0.1); 
+    }
+
+    /* Often when working with colors, we also want adjust the opacity of a specific color (not just on the whole styling. This we find more common when applying shadows cos shadows often are a more faded color of the base object.) This is when the rgba where a means alpha (opacity: 0 - 1)  */
+
+    .back-btn {
+      padding: 8px 7px;
+      margin-right: 6px;
+      cursor: pointer;
+    }
+
+    .next-btn {
+      padding: 8px 7px;
+      margin-left: 6px;
+      cursor: pointer;
+    }
+
+    .page {
+      margin-left: 3px;
+    }
+
+    .stretch {
+      background-color: green;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      transition: padding 0.52s;
+    }
+
+    .stretch:hover {
+      padding: 12px 25px ;
+    }
+    
+  </style>
+  <title>Buttons</title>
+</head>
+<body>
+  <button class="subscribe-btn">SUBSCRIBE</button>
+  <button class="join-btn">JOIN</button>
+  <button class="tweet-btn">Reply</button>
+
+  <p>* pagination project.</p>
+
+  <button class="back-btn">Back</button>
+  <a class="page" href="#">1</a>
+  <a class="page" href="#">2</a>
+  <a class="page" href="#">3</a>
+  <a class="page" href="#">4</a>
+  <a class="page" href="#">5</a>
+  <button class="next-btn">Next</button>
+
+  <p>Growing button</p>
+
+  <button class="stretch">Stretch</button>
+</body>
+</html>

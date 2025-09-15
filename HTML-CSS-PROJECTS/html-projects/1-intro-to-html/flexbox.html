@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Flexbox Practice</title>
+  <style>
+    .item {
+      flex-basis: 200px;
+    }
+  </style>
+</head>
+<body style="padding-bottom:1000px ;">
+  <!-- Just like in the grid practice, the inline element styling is for illustration and to help understand what is going on during future reference.
+   Default flex direction is row. So no need to set it when it is what we want. -->
+  <div style="
+    display: flex;
+    flex-wrap: wrap; 
+    
+  ">
+    <div class="item" style="
+      background-color: aqua;
+      ">
+      div 1. Make this one longer width (flexible)
+    </div>
+    <div class="item" style="
+    background-color: greenyellow;
+    ">
+    div 2
+    <p>make this taller (vertical alignment maintained)</p>
+    </div>
+    <div class="item" style="background-color: darkgoldenrod;";">div 3. this would wrap around</div>
+    <div class="item" style="background-color: yellow;">another div</div>
+    <div class="item" style="background-color: rgb(0, 255, 136);">another div</div>
+    <div class="item" style="background-color: rgb(153, 255, 0);">another div</div>
+    <div class="item" style="background-color: rgb(162, 0, 255);">another div</div>
+    <div class="item" style="background-color: rgb(0, 213, 255);">another div</div>
+    <div class="item" style="background-color: rgba(255, 242, 0, 0.336);">another div s</div>
+    <div class="item" style="background-color: rgb(0, 213, 255);">another div</div>
+  </div>
+
+  <div style="
+    display: flex;
+    margin-top: 20px;
+    ">
+    <div class="item1" style="
+      background-color: aquamarine;
+      flex: 15px;
+      ">
+      child item
+      </div>
+    <div class="item1" style="
+      background-color: blueviolet;
+      flex: 1;
+      ">
+      child item
+      </div>
+    <div class="item1" style="
+      background-color: green;
+      flex: 2;
+      ">
+      child item
+    </div>
+  </div>
+
+    <div style="
+      margin-top: 30px;
+      display: flex;
+      height: 70px;
+      border-width: 1px;
+      border-style: solid;
+      justify-content: space-between;
+      ">
+
+      <div style="
+        background-color: lightblue;
+        width: 100px;
+        ">100px
+        </div>
+      <div style="
+        background-color: rgb(141, 29, 152);
+        width: 100px;
+        ">100px
+        </div>
+        <div style="
+        background-color: lightblue;
+        width: 100px;
+        ">100px
+        </div>
+    </div>
+
+    <div style="
+      margin-top: 30px;
+      display: flex;
+      height: 70px;
+      border-width: 3px;
+      border-style: solid;
+      justify-content: space-evenly;
+      align-items: center;
+      ">
+
+      <div style="
+        background-color: lightblue;
+        width: 100px;
+        ">100px
+        </div>
+      <div style="
+        background-color: rgb(141, 29, 152);
+        width: 100px;
+        ">100px
+        </div>
+        <div style="
+        background-color: lightblue;
+        width: 100px;
+        ">100px
+        </div>
+    </div>
+  
+</body>
+</html>

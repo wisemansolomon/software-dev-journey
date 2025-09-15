@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox Challenge Layouts</title>
+  <style>
+    * {
+      margin: 0;
+    }
+    .layout-1-container {
+      margin: 5px;
+      width: 500px;
+      background-color: beige;
+      border: 1px solid;
+      border-radius: 4px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .content-container {
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
+      font-weight: 500;
+      margin: 10px;
+      align-items: center;
+    }
+
+    .right {
+      background-color: blue;
+      border-radius: 35px;
+      padding: 6px 15px;
+      color: white;
+    }
+/* second layout styles */
+    .layout-2-container {
+      font-family: Arial, Helvetica, sans-serif;
+      border: 1px solid grey;
+      font-size: 17px;
+      margin: 5px;
+      width: 500px;
+      border-radius: 2px;
+    }
+    .profile-photo {
+      width: 60px;
+      height: 60px;
+      margin: 5px;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+
+    .content-container-2 {
+      display: flex;
+      align-items: center;
+    }
+
+    .inner-container {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 5px;
+    
+    }
+
+    button {
+      background-color: rgb(7, 137, 184);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: medium;
+      cursor: pointer;
+    }
+
+    p {
+      color: grey;
+      margin-bottom: 4px;
+    }
+
+    .name {
+      color: black;
+      font-weight: bold;
+    }
+
+    /* layout 3 styling */
+    .layout-3-container {
+      height: 50px;
+      width: 700px;
+      background-color: rgb(122, 13, 190);
+      font-family: Arial, Helvetica, sans-serif;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 5px;
+      margin-bottom: 100px;
+      border-radius: 3px;
+    }
+
+    .left-3 {
+      font-weight: bold;
+      margin-left: 10px;
+      width: 100px;
+
+    }
+
+    .download-btn {
+      background-color: rgb(122, 13, 190);
+      border: 1px solid white;
+      padding: 7px 15px;
+      margin-left: 5px;
+    }
+
+    .right-3 {
+      /*margin-right: 2px;*/
+      width: 120px;
+    }
+
+    .center {
+      flex: 1;
+      margin-left: 15px;
+      margin-right: 70px;
+    }
+
+    input {
+      border-radius: 40px;
+      border: 1px solid;
+      width: 100%;
+      height: 25px;
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <p>Layout Exercise 1</p>
+  <div class="layout-1-container">
+    <div class="content-container">
+      <div class="left">Home</div>
+      <div class="right">14</div>
+    </div>
+    <div class="content-container">
+      <div class="left">Notifications</div>
+      <div class="right">4</div>
+    </div>
+    <div class="content-container">
+      <div class="left">Messages</div>
+      <div class="right">5</div>
+    </div>
+  </div>
+
+  <p>Layout Exercise 2</p>
+  <div class="layout-2-container">
+    <div class="content-container-2">
+      <div class="profile-photo"><img src="random-images/cat-1.jpg" alt="image of a cat">
+      </div>
+      <div class="inner-container">
+        <div class="left-1">
+          <p class="name">Oliver</p>
+          <p>The cat</p>
+          <p>Popular</p>
+        </div>
+        <div class="right-1">
+          <button>Follow</button>
+        </div>
+      </div>
+    </div>
+    <div class="content-container-2">
+      <div class="profile-photo"><img src="random-images/dog-1.webp" alt="image of a cat">
+      </div>
+      <div class="inner-container">
+        <div class="left-1">
+          <p class="name">Martin</p>
+          <p>The cute dog</p>
+          <p>Popular</p>
+        </div>
+        <div class="right-1">
+          <button>Follow</button>
+        </div>
+      </div>
+    </div>
+    <div class="content-container-2">
+      <div class="profile-photo"><img src="random-images/bird-2.jpg" alt="image of a cat">
+      </div>
+      <div class="inner-container">
+        <div class="left-1">
+          <p class="name">Jerry</p>
+          <p>The colorful bird</p>
+          <p>Popular</p>
+        </div>
+        <div class="right-1">
+          <button>Follow</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p>Layout Exercise 3</p>
+  <div class="layout-3-container">
+    <div class="left-3">
+      Home
+    </div>
+    <div class="center">
+      <input type="text" placeholder="Search" id="">
+    </div>
+    <div class="right-3">
+      <button class="download-btn">Download</button>
+    </div>
+  </div>
+</body>
+</html>

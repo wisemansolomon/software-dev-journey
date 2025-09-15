@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Rock Paper Scissors</title>
+	</head>
+	<body>
+		<p>Rock Paper Scissors</p>
+		<!-- Recall our initial algorithm is...check previos versions
+     
+    Now instead of using a popup to display our result, we wwant to displauy it on the page. 
+
+    -->
+
+		<button
+			onclick="
+      playRPSGame('rock');
+
+    ">
+			Rock
+		</button>
+
+		<button
+			onclick="
+    playRPSGame('paper');
+    ">
+			Paper
+		</button>
+
+		<button
+			onclick="
+      playRPSGame('scissors');
+    ">
+			Scissors
+		</button>
+
+		<!-- Adding a new Rest Score button to reset the score. -->
+		<button
+			onclick="
+        score.wins = 0;
+        score.losses = 0;
+        score.ties = 0;
+        
+        localStorage.removeItem('score');
+
+        //we are able to use updateScoreElement cos default score is being used and all the variables there as used in the function are already 0
+        updateScoreElement()
+        document.querySelector('.js-move').innerHTML = '';
+        document.querySelector('.js-result').innerHTML = '';
+
+    ">
+			Reset Score
+		</button>
+
+		<p class="js-result"></p>
+		<p class="js-move"></p>
+		<!-- We need an element in which to display and also choose a position on our page where it should be displayed. So we create one -->
+		<p class="js-score"></p>
+
+		<script>
+
+			let score = JSON.parse(localStorage.getItem("score")) || {
+			  wins: 0,
+			  losses: 0,
+			  ties: 0,
+			};
+
+			   //here score is only populated by what was saved to local storage previously and does not update during runtime. It is loaded upon refresh of the page, and we want it for the player.
+			updateScoreElement()
+
+
+			function playRPSGame(playerMove) {
+			  const computerMove = generateComputerMove();
+			  let result = "";
+
+			  if (playerMove === "rock") {
+			    if (computerMove === "rock") {
+			      result = "Tie.";
+			    } else if (computerMove === "paper") {
+			      result = "You lose.";
+			    } else if (computerMove === "scissors") {
+			      result = "You win.";
+			    }
+			  } else if (playerMove === "paper") {
+			    if (computerMove === "rock") {
+			      result = "You win.";
+			    } else if (computerMove === "paper") {
+			      result = "Tie.";
+			    } else if (computerMove === "scissors") {
+			      result = "You lose.";
+			    }
+			  } else if (playerMove === "scissors") {
+			    if (computerMove === "rock") {
+			      result = "You lose.";
+			    } else if (computerMove === "paper") {
+			      result = "You win.";
+			    } else if (computerMove === "scissors") {
+			      result = "Tie.";
+			    }
+			  }
+
+			  //update score with its values.:
+			  if (result === "You win.") {
+			    score.wins++;
+			  } else if (result === "You lose.") {
+			    score.losses++;
+			  } else if (result === "Tie.") {
+			    score.ties++;
+			  }
+
+			  localStorage.setItem("score", JSON.stringify(score));
+
+			     //moving the same score code here ensures updated score during runtime. Now we have used same code twice, therefore calls for a function
+			  updateScoreElement()
+			  document.querySelector('.js-result').innerHTML = result;
+			  document.querySelector('.js-move').innerHTML = `Your Move: '${playerMove}' Computer Move: '${computerMove}'`;
+			}
+
+			     function generateComputerMove() {
+			  const randomNumber = Math.random();
+
+			  let computerMove = "";
+
+			  if (randomNumber >= 0 && randomNumber < 1 / 3) {
+			    computerMove = "rock";
+			  } else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
+			    computerMove = "paper";
+			  } else if (randomNumber >= 2 / 3 && randomNumber < 3 / 3) {
+			    computerMove = "scissors";
+			  }
+			  return computerMove;
+			  }
+
+			   function updateScoreElement() {
+			     document.querySelector('.js-score')
+			  .innerHTML = ` Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+			   }
+		</script>
+	</body>
+</html>

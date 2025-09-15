@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Petrona:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* When it comes to text styling. Two keywords to note which when you start on editor, a list of options drop are 'text' and 'font' */
+
+    /* In the text-styling below, we are trying to copy style from google website. Recall we learnt that width is only for certain occasions like forcing text to wrap, we set a width for the text. Also to add space between lines, we set line-height  */
+
+    /* CSS specificity: The style that is more specific has more priority and will be applied irrespective of which comes first in order of appearance. This is made possible by selectors. The selector that is more specific has a higher specificity. .some-title > p */
+
+    /* clean-up */
+    p {
+      font-family: Oswald, Montserrat, Petrona, Arial, Helvetica, sans-serif;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .some-title {
+      /*font-family: Arial, Helvetica, sans-serif;*/
+      font-weight: bold;
+      font-size: 18px;
+      width: 300px; 
+      line-height: 25px;
+      margin-bottom: 5px;
+      
+      /*font-style: italic;*/
+      /*text-align: center;*/
+    }
+
+    .views-info {
+      /*font-family: Arial, Helvetica, sans-serif;*/
+      font-size: 14px;
+      color: rgb(96, 96, 96);
+    }
+
+    .video-author {
+      /*font-family: Arial, Helvetica, sans-serif;*/
+      color: rgb(96, 96, 96);
+      font-size: 14px;
+      margin-top: 20px;
+    }
+
+    .video-description {
+      /*font-family: Arial, Helvetica, sans-serif;*/
+      font-size: 14px;
+      color: rgb(96, 96, 96);
+      width: 300px;
+      margin-top: 20px;
+      margin-bottom: 100px;
+    }
+
+    .apple-text {
+      font-size: 14px;
+      background-color: rgb(227, 65, 64);
+      color: white;
+      padding-top: 18px;
+      padding-bottom: 18px;
+      text-align: center;
+      
+    }
+
+    .span-example {
+      cursor: pointer;
+    }
+
+    .span-example:hover {
+      text-decoration: underline;
+    }
+
+    /* "In-line text elements" are elements that can be used to style only a portion of a text without causing line break. <span>, <strong>, <u> <em>. But in all these, the <span> is really useful because it adds no default style/accessibility use, but we can use it to isolate a portion of text we want to style ourselves.*/
+
+      /* Last thing we are going to learn is that because html ignore spaces, to add multiple looking spacing between our text, we can wrap the text in a span, select it and add margin to it.*/
+  </style>
+
+  <title>Texts</title>
+</head>
+<body>
+  <p class="some-title">
+    Talking Tech and AI with Google CEO Sundar Pichai!
+  </p>
+
+  <!-- There is something called HTML entity which allows us to add special chaaracters and symbol  -->
+  <p class="views-info">
+    3.4M views &middot 6 months ago
+  </p>
+  
+   <p class="video-author">
+      Marques Brownlee &check;
+    </p>
+
+    <p class="video-description">
+      Talking tech and AI on the heels of Google I/O. Also a daily driver phone reveal from Google's CEO. Shoutout to Sundar!
+    </p>
+
+    <p class="apple-text">
+      Shop early for the best selection of holiday favourites. <span class="span-example">Shop now &gt;</span>
+    </p>
+</body>
+</html>

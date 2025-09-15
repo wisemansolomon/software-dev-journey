@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Rock Paper Scissors</title>
+		<script src="/scripts/08-rock-paper-scissors.js"></script>
+		<link
+			rel="stylesheet"
+			href="styles/08-rock-paper-scissors.css" />
+	</head>
+	<body>
+		<p class="title-1">Play Game</p>
+		<p class="title-2">Rock Paper Scissors</p>
+		<!-- Recall our initial algorithm is...check previos versions
+
+    This project is about styling our game with icons such that the buttons will be replaced with icons and the moves picked by either player and computer will also be same icon. And finally separate the different technologies into different files, as requested by best practice.
+
+    -->
+
+		<button
+			class="move-button"
+			onclick="
+      playRPSGame('rock');
+
+    ">
+			<!-- notice we specifically added class to the image tag to style the image and not the button because it didnt work otherwise -->
+			<img
+				src="images/image-rock.png"
+				alt=""
+				class="move-icon" />
+		</button>
+
+		<button
+			class="move-button"
+			onclick="
+    	playRPSGame('paper');
+    ">
+			<img
+				src="images/image-paper.png"
+				alt=""
+				class="move-icon" />
+		</button>
+
+		<button
+			class="move-button"
+			onclick="
+      	playRPSGame('scissors');
+    ">
+			<img
+				src="images/image-scissors.png"
+				alt=""
+				class="move-icon" />
+		</button>
+
+		<!-- We used a clever way to insert images. By naming the image a name that takes part of its name from the playerMove variable, when we interpolate the name of our playerMoves var into the image name completing the image name and in so doing dynamically changing the image as the playerMove variable changes when we play the game we are able to pass the images in our innerHTML as a variable. But ensure all images are in the same format png or jpeg
+		
+		Used the below template to write and format the image and removed afterwards.
+		You <img src="image-rock.jpeg" alt="" class="move-button"> <img src="image-scissors.png" alt="" class="move-button"> Computer
+		-->
+		<p class="js-result css-result"></p>
+
+		<p class="js-move"></p>
+
+		<!-- We need an element in which to display and also choose a position on our page where it should be displayed. So we create one -->
+		<p class="js-score css-scoreboard"></p>
+
+		<!-- Adding a new Rest Score button to reset the score. -->
+		<button
+			class="reset-score-button"
+			onclick="
+        	score.wins = 0;
+        	score.losses = 0;
+        	score.ties = 0;
+        
+        localStorage.removeItem('score');
+
+        //we are able to use updateScoreElement cos default score is being used and all the variables there as used in the function are already 0
+        updateScoreElement()
+
+
+        document.querySelector('.js-move').innerHTML = '';
+        document.querySelector('.js-result').innerHTML = '';
+
+    ">
+			Reset Score
+		</button>
+	</body>
+</html>

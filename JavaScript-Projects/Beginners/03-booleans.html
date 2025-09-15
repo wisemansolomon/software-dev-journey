@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booleans</title>
+  </head>
+  <body>
+    <script>
+      /* Booleans are a data type in JS that can only either of two values "true" or "false" One of the importance of the boolean is
+      they help us in programming write logical programs i.e if-Statements: If statements lets us do two things, 1. we can write multiple program logic and 2. decide which one to run
+      depending on certain conditions. In this program, we shall learn some shortcuts too.
+
+      Operators: operators are special symbols or keywords that perform specific operation on one, two, or more variables, values or expressions. They help us manipulate data, make decisions and control the flow of our programs.
+              In the course of programming, we will need to employ operators often times. They are of three types, 1. Arithmetic, 2. Comparison Operators and 3. Logical Operators.
+              Arithmetic: +,-, *, /, %,**   % is for modulus: They perform mathematical operations on numbers
+              Comparison: ==, ===, !=, !==, >, <, >=, <= : They compare values, in pure state or as a variable and return a boolean result. Rarely will compare booleans
+              Logical Operators: AND(&&), OR(||), NOT(!): It is used to evaluate two or more sides of a boolean expressions. (NOT operator only works with 1 boolean expression/value. It flips it)
+      Note: == tries to convert the values to be compared into the same type, hence it is known as loose equality /'type' coercion AND comparison operators are lower in priority than math operators.
+              In JavaScript though, there are additional operators that do not fit neatly into these three categories.
+              * Assignment Operators: (=, +=, -=, *=, /= etc)
+              * Bitwise Operators: (&, |, ^, ~, <<,>> etc)
+              * Conditional (Tenary) Operator: (? :)
+              * Comma Operator (,)
+              * Unary Operators (typeof, delete (to delete a property from an object), void)
+              * Spread Operator (...)
+             Additionally, JS has some quirks (specific behavior exhibited only under certain conditions) when it comes to operators
+             1. JS will tend to automatically convert values to the correct 'type' (not always what we want though so we must be careful) when using some operators.
+             2. JS looks at values through the lens of truthy and falsy if encountered in a boolean context- in conditional statements or logical operators.
+             i. Truthy All non zero numbers (-/+), true, non empty strings ("hi", " "), Objects (empty or not) eg {}, new Date(), Arrays(empty or not)
+             ii. Falsy: false, 0, empty string (""), null, undefined, NaN   //undefined is variable declared without assigning a value and only by using let. to use const we must then assign the variable with value 'undefined'
+
+      */
+
+      /*
+            let a = 3,
+              b = 6;
+
+            if (a > b) {
+              console.log(
+                `This code runs if the  value/boolean expression in the bracket evaluates to truthy. This is branch 1`
+              );
+            } else if (b > a) {
+              console.log(
+                `this code only runs if the boolean condition here is truthy. This is branch 2 of this if statement`
+              );
+            } else {
+              console.log(
+                `this code only runs if the condition or conditions preceeding it evaluate to false. This is branch 3`
+              );
+            }
+
+            */
+
+      /*
+
+            //The next thing we learn is that if statements (decision) does not work only with boolean values (i.e true or false) but works just as well with
+            // truthy or falsy values. And we have covered what they are already. But we will now see how they help us simplify code by avoiding comparison operators and also
+            //they have a special behavior with logical operators too.
+
+
+            if (NaN) {
+              console.log("This value behaves just like the boolean value: true");
+            } else {
+              console.log(
+                "this value is falsy and behaves just like the boolean value : false"
+              );
+            }
+            */
+
+      /*
+            // How then do we use truthy and falsy values in real world code? One way we use them is to implement shortcuts in our code.
+            //Shortcuts where possible is great for efficient code. truthy and falsy values concept in JS has helped programmers to identify shortcuts to a much longer code logic
+            // for example, the shortcut is not a alternate way to write if statements because we sitll use if-else
+
+            const cartQuantity = 5;
+            if (cartQuantity) {
+              //suppose we only want to display this message only when cart has products, we would normally write (if cartQuantity > 0) But we can avoid the comparison
+              console.log("cart has products");
+            }
+
+            */
+      /*
+            //Logical Operators examples with truthy/falsy values
+
+            console.log(!0); //true; so we have flipped a falsy value to truthy therefore returns true
+
+            the !NOT operator on a value checks the truthy or falsy nature of that value. If on a variable, it evalates its value and used to check the opposite state of that value.
+            */
+
+      /*
+            Next lesson is to learn alternate ways of writing if statements that does not require 'if' especially when testing 2 branches(if-else) They are
+            And going forward, we should memorize that our conditions is now testing if truthy or if falsy- no more if evaluete to true or false as the fixed bool value.
+            * Ternary Operator - uses ?:
+            * Guard Operator - uses &&
+            * Default Operator - uses ||
+            */
+
+      /*
+
+            // Tenary    truthy ? (this side of code runs.) : (else, this side of code runs. )
+            // Think of the question mark up to before the colon as the if branch / Think of the from colon to rest of code as the else branch
+            // An advantage of tenary operator over an if statement is that we can save the result/the side that runs (if we want/needed in our code) in a variable
+            // We have seen from rock-paper-scissors that we can declare a global variable and assign /associate the outcome of any branch to a variable but here it is straightforward
+
+
+            const tenaryOp = undefined
+              ? `read my like this: if truthy, the code on left side of colon will run/ we do not need to console.log because tenary can be assigned to a var
+      because it returns the side that runs. If an expression it evaluates and returns the final value and if a string it is collected`
+              : `this side will run if falsy: And we see that it evaluates an expression: ${
+                  2 * 3
+                }`;
+
+
+            console.log(tenaryOp);
+
+          */
+
+      /*
+
+            // Guard Operator : && (if statement shortcut/alternate) - similar to (if (truthyCondition) {console.log('code on left of operator executes because RHS is truthy')})
+            //we recall that the and evaluates truthy/falsy values on either of its sides to come out with a universal outcome. Now apart from that,
+            //we also recall that for &&, both sides of it must be truthy for the outcome to be truthy and move the program along. By first checking the left then moves to right and check
+            //Now developers discovered that suppose the left side of && is false, the program does not bother to check the right side => The && operator tends to stop early but if the left side
+            // is true, it will not stop early and even though this will overall evaluate to true, it has been discovered to also behave like if else along with its normal nature. Especially for
+            //two branch tests. It also has the advantage over if-else to have its outcome branch assigned directly to a variable.
+
+            //How the && if statement works: it only checks the truthiness/falsiness of the left side. if the left side is falsy it shorts circuit and (return the left evaluated boolean value) but 'if the left side is true (it does not short circuit,  it return the value on the right)
+            //So in summary, the && shortcut gives you a boolean if the left side is falsy and does not run the right or it runs and returns the expression on the right if the left is truthy
+            //So only use it when you intend to run a 'tell me this line is falsy' (collected in variable) and do not execute the code to the right or execute the code to the right if the left side is true and return the evaluated expression
+
+
+            const name = "Solomon";
+            const status = "very rich man";
+            const andOutcome = !name && `he is very rich. His status is: ${status}`; //use false on the right and it returns false. Meaning it does not even check whether the right is truthy/falsy. It just returns the value as is
+            console.log(andOutcome);
+
+            */
+
+      /*
+      //Default Operator || (if statement shortcut/Alternate) - Used to set a default value (akin to if (!LHSntTruthy) then will i execute  {console.log(use this as default)}
+      //Recall that the || operatr checks that atleast one side is truthy. Now imagine an or statment in which the left side is truthy. We already know that the OR operator output is true, this forces the OR operator to stop early.needless to check RHS
+      //To see how this if alternative works in practice, suppose we have a program that has aa feature to select a default that allows the user to select a currency of choice and if the user does not selct a currenct, a deflt currency is applied. Optional
+
+      const currency = undefined || "USD"; //eur is selected by user => left side is truthy so EUR is returned. But if user does not select, left side is undefined and RHS is default
+
+      console.log(currency);
+
+        */
+
+      /*
+      //Exercise 1: A park says its discount is only available if they meet a certain age requirement and it is not a public holiday.
+      //We need a variable to note the holiday data of true/false and another variable to depict another input value age.
+
+      const age = 5;
+      const isHoliday = false;
+      if ((age <= 6 || age >= 65) && !isHoliday) {
+        console.log(`Discount`);
+      } else {
+        console.log(`No discount`);
+      }
+
+    */
+
+      const random = Math.floor(Math.random() * 2); // integer 0 and 1. Recall 0 is falsy and 1 is truthy so used in ternary operator below
+      const result1 = random ? "head" : "tail";
+      const guess = "tail";
+      const result2 = guess === result1 ? "you win!" : "you lose!";
+      console.log(result2);
+    </script>
+  </body>
+</html>

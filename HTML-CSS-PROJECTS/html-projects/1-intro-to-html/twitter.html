@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>x.com recreation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Tahoma, sans-serif;
+            background-color: black;
+            color: #14171a;
+            overflow: hidden; /* Prevents scrolling and notice it is applied on the body tag*/
+        }
+
+        .main-section {
+            display: flex;
+            flex-direction: row;
+            min-height: 100vh; /* Used to allow content to expand if needed. */
+            max-width: 100vw; /*I saw the importance of using max-width cos the browser only considers available space.*/
+        }
+
+        .left-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .x-icon-container {
+            background-color: white;
+            border-radius: 40px;
+            width: 330px;
+            height: 300px;
+
+        }
+
+        .x-icon {
+            width: 350px;
+
+        }
+
+        .right-section {
+            width: 590px;
+            display: flex;
+            flex-direction: column;
+            align-items:flex-start;
+            padding: 16px;
+        }
+
+        .heading-1 {
+            color: #e7e9ea;
+            font-family:  sans-serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-top: 70px;
+            margin-bottom: 50px;
+        }
+
+        .heading-2 {
+            color: #e7e9ea;
+            font-family:  sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+
+        .sign-up-container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        .sign-up-img {
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        .sign-up-btn-1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 9px 20px;
+            width: 300px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .sign-up-btn-1:hover {
+            background-color: #f5f8fa;
+        }
+
+        .sign-up-btn-2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 9px 20px;
+            width: 300px;
+            /* margin-bottom: 10px; */
+            cursor: pointer;
+        }
+
+        .sign-up-btn-2:hover {
+            background-color: #f5f8fa;
+        }
+
+        .create-acc-btn {
+            background-color: #1a8cd8;
+            color: white;
+            font-weight: 600;
+            font-size: 14.4px;
+            border: none;
+            width: 300px;
+            border-radius: 20px;
+            padding: 11px 20px;
+            cursor: pointer;
+        }
+
+       .create-acc-btn:hover {
+            background-color: #1a8cd8;
+        }
+
+        .divider-line-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 300px;
+            margin: 10px 0;
+        }
+
+        .divider-line {
+            width: 131.38px;
+            height: 1px;
+            background-color: #2f3336;
+            margin: 0 4px;
+        }
+
+        .or-text {
+            color:#e7e9ea ;
+            font-size: 15px;
+        }
+
+        .disclaimer-text-container {
+            font-size: 11px;
+            width: 300px;
+            color: #71767b;
+            margin-top: 20px;
+        }
+
+        .disclaimer-text-container span a {
+            color: #1d9bf0;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .disclaimer-text-container span a:hover {
+            text-decoration: underline;
+        }
+
+        .sign-in-container {
+            display: flex;
+            flex-direction: column;
+            padding-top: 50px;
+        }
+
+        .sign-in-container span {
+            color: #e7e9ea;
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .sign-in-btn {
+            width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            border: 1px solid #5a7b91;
+            padding: 11px 20px;
+            cursor: pointer;
+            background-color: black;
+            color: #1d9bf0;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .sign-in-btn:hover {
+            background-color: #1d9cf020;
+            /* color: white; */
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+            padding: 12px 16px;
+        }
+
+        .nav-item a,
+        .nav-item {
+            color: #71767b;
+            text-decoration: none;
+            font-size: 11px;
+            margin: 0 4px;
+        }
+
+        .nav-item a:hover,
+        .nav-item:hover {
+            text-decoration: underline;
+        }
+
+        .nav-divider {
+            color: #71767b;
+            text-decoration: none;
+            font-size: 11px;
+        }
+
+
+        @media (max-width: 1016px) {
+
+            body {
+                overflow-y: auto; /* Allows vertical scrolling on smaller screens */
+            }
+
+            .main-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+            }
+            .main-section {
+                flex-direction: column;
+                align-items: center;
+                width: 500px;
+                /* flex-wrap: wrap; better to use flex direction as it more about the layout setting*/
+            }
+
+            .heading-1 {
+                text-align: left;
+                margin-top: 30px;
+                margin-bottom: 20px;
+            }
+
+            .left-section, .right-section {
+                width: 100%; /* Full width for both sections  so one is not wider than the other*/
+                text-align: center;
+            }
+
+            .x-icon-container {
+                width: 38px;
+                height: 36px;
+            }
+
+            .x-icon {
+                width: 100%;
+            }
+
+            .left-section {
+                justify-content: flex-start;
+                margin-left: 20px;
+            }
+
+
+            /* .x-icon-container {
+                width: 250px;
+                height: 220px;
+            }
+
+            .x-icon {
+                width: 270px;
+            }
+
+            .right-section {
+                padding: 16px 0;
+            }
+
+            .sign-up-btn-1, .sign-up-btn-2, .create-acc-btn, .sign-in-btn {
+                width: 90%;
+            } */
+        }
+
+        /* Below is me trying to implement some scrollbar styling but it is often not recommended */
+
+        /* ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #117fed;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #323638;
+            border-radius: 10px;
+        } */
+    </style>
+</head>
+<body>
+    <main class="main-container">
+        <section class="main-section">
+            <div class="left-section">
+                <div class="x-icon-container">
+                    <img class="x-icon" src="random-icons/X_logo.png" alt="">
+                </div>
+            </div>
+            <div class="right-section">
+                <div class="heading-1">Happening now</div>
+                <div class="heading-2">Join today.</div>
+                <div class="sign-up-container">
+                    <button class="sign-up-btn-1">
+                        <img class="sign-up-img" src="random-icons/google_icon.png" alt="">Sign up with Google
+                    </button>
+                    <button class="sign-up-btn-2">
+                        <img class="sign-up-img" src="random-icons/apple-logo.png" alt="">Sign up with Apple
+                    </button>
+                    <div class="divider-line-container">
+                        <div class="divider-line"></div> <span class="or-text">OR</span> <div class="divider-line"></div>
+                    </div>
+                    <button class="create-acc-btn">Create account</button>
+                    <div class="disclaimer-text-container">
+                        By signing up, you agree to our <span><a href="#">Terms of Service</a></span> and <span><a href="#">Privacy Policy</a></span>, including <span><a href="#">Cookie Use</a></span>.
+                    </div>
+                </div>
+                <div class="sign-in-container">
+                    <span>Already have an account?</span>
+                    <button class="sign-in-btn">Sign in</button>
+                </div>
+            </div>
+        </section>
+    </main>
+        
+    <nav>
+        <span class="nav-item"><a href="#">About</a></span>
+        <span class="nav-divider">|</span>
+        <span class="nav-item"><a href="#">Download the X app</a></span>
+        <span class="nav-divider">|</span>
+        <span class="nav-item"><a href="#">Grok</a></span>
+        <span class="nav-divider">|</span>
+        <span class="nav-item"><a href="#">Help Centre</a></span>
+        <span class="nav-divider">|</span>
+        <span class="nav-item"><a href="#">Terms of Service</a></span>
+        <span class="nav-divider">|</span>
+        <span class="nav-item"><a href="#">Privacy Policy</a></span>
+        <span class="nav-divider">|</span>
+        <span class="nav-item"><a href="#">Cookie Policy</a></span>
+        <span class="nav-divider">|</span>
+        <span class="nav-item"><a href="#">Accessibility</a></span>
+        <span class="nav-divider">|</span>
+        <span class="nav-item"><a href="#">Ads info</a></span>
+        <span class="nav-divider">|</span>
+        <span class="nav-item"><a href="#">Blog</a></span>
+        <span class="nav-divider">|</span>
+        <span class="nav-item"><a href="#">Careers</a></span>
+        <span class="nav-divider">|</span>
+        <span class="nav-item"><a href="#">Brand Resources</a></span>
+        <span class="nav-divider">|</span>
+        <span class="nav-item"><a href="#">Advertising</a></span>
+        <span class="nav-divider">|</span>
+        <span class="nav-item"><a href="#">Marketing</a></span>
+        <span class="nav-divider">|</span>
+        <span class="nav-item"><a href="#">X for Business</a></span>
+        <span class="nav-divider">|</span>
+        <span class="nav-item"><a href="#">Developers</a></span>
+        <span class="nav-divider">|</span>
+        <span class="nav-item"><a href="#">Directory</a></span>
+        <span class="nav-divider">|</span>
+        <span class="nav-item"><a href="#">Settings</a></span>
+        <span class="nav-divider">|</span>
+        <span class="nav-item">&copy; 2025 X Corp.</span>
+    </nav>
+</body>
+</html>
